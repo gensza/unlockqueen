@@ -129,13 +129,13 @@ class User extends FSD_Controller
 					}	
 					else 
 					{
-						$this->session->set_flashdata("fail", $this->lang->line('error_account_deactivated'));
+						$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert" role="danger"> '.$this->lang->line('error_account_deactivated').'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 						redirect('login');
 					}
 				}
 				else 
 				{
-					$this->session->set_flashdata("fail", $this->lang->line('error_invalid_login'));
+					$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert" role="danger"> '.$this->lang->line('error_invalid_login').'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 					redirect('login');
 				}			 
 			}
@@ -143,8 +143,8 @@ class User extends FSD_Controller
 		$data = array();
 		$data["title"] = "Login";
 		$data["heading"] = "Login";
-		$data['master_template'] = "user/login";
-		$this->load->view("user/master_template",$data);				
+		// $data['master_template'] = "user/login";
+		$this->load->view("user/login",$data);				
 	}
 
 	public function register()

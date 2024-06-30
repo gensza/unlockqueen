@@ -7,7 +7,7 @@ Require not ip 95.67.178.169
 ##AddHandler application/x-httpd-php56 .php
 RewriteEngine on
 RewriteCond $1 !^(index\.php|img|assets|css|fonts|js|uploads|robots\.txt|.well-known)
-RewriteRule ^(.*)$ /index.php/$1 [L]
+RewriteRule ^(.*)$ index.php/$1 [L]
 
 # BEGIN cPanel-generated php ini directives, do not edit
 # Manual editing of this file may result in unexpected behavior.

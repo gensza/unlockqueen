@@ -33,6 +33,10 @@ class dashboard extends FSD_Controller
 		$data['Title'] = "Dashboard";
 		$data['template'] = "member/dashboard";
 		$data['credit'] = $this->credit_model->get_credit($id);
+
+		$data['content'] = "member/dashboard";
+		$data['content_js'] = "dashboard/dashboard.js";
+		
 		$this->load->view('mastertemplate', $data);
 	}
 	
@@ -40,6 +44,48 @@ class dashboard extends FSD_Controller
 	{
 		$id = $this->session->userdata('MemberID');
 		echo $this->imeiorder_model->get_imei_data($id);
+	}
+
+	public function listener_new()
+	{
+		$id = $this->session->userdata('MemberID');
+
+		$start      =  $_REQUEST['start'];
+        $length     = $_REQUEST['length'];
+        $cari_data  = $_REQUEST['search']['value'];
+
+        $datas = $this->imeiorder_model->get_imei_data_new($id, $start, $length, $cari_data);
+
+        $total = 9999999;
+        $array_data = array();
+        $no = $start + 1;
+        if (!empty($datas) && $datas != null) {
+
+            foreach ($datas as $d) {
+
+                $data["no"]          = $no;
+                $data["imei"]        = $d['IMEI'];
+                $data["description"] = $d['Title'];
+                $data["service"]     = $d['Code'];
+                $data["code"]        = $d['Note'];
+                $data["status"]      = $d['Status'];
+                $data["created_at"]  = $d['CreatedDateTime'];
+
+                array_push($array_data, $data);
+                $no++;
+            }
+        }
+
+        $output = array(
+
+            "draw" => intval($_REQUEST['draw']),
+            "recordsTotal" => intval($total),
+            "recordsFiltered" => intval($total),
+            "data" => $array_data
+        );
+
+
+        echo json_encode($output);
 	}
 	
 	public function fileorder()

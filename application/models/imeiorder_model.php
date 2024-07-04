@@ -174,6 +174,23 @@ class imeiorder_model extends CI_Model
 				->join($this->tbl_method, "$this->tbl_name.MethodID=$this->tbl_method.ID", "inner")
 				->where("$this->tbl_name.MemberID",$id);						
 		return $this->odatatables->generate();
+	}
+
+	public function get_imei_data_new($id, $start, $length, $cari_data)
+	{
+		$this->db->select("$this->tbl_name.ID, $this->tbl_name.IMEI, $this->tbl_method.Title, $this->tbl_name.Code, $this->tbl_name.Note, $this->tbl_name.Status,  $this->tbl_name.CreatedDateTime", TRUE)
+				->from($this->tbl_name)
+				->join($this->tbl_method, "$this->tbl_name.MethodID=$this->tbl_method.ID", "inner")
+				->where("$this->tbl_name.MemberID",$id)
+				->like('IMEI', $cari_data, 'both')
+				->or_like('Title', $cari_data, 'both')
+				->or_like('Code', $cari_data, 'both')
+				->or_like('Note', $cari_data, 'both')
+				->or_like("$this->tbl_name.Status", $cari_data, 'both')
+				->limit($length, $start)
+				->order_by("$this->tbl_name.ID", "desc");
+				
+				return $this->db->get()->result_array();					
 	}	
 	
 	public function get_imei_data_select($id,$status)

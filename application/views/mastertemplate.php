@@ -1,180 +1,388 @@
 <!DOCTYPE html>
-<!--[if IE 7]>
-<html class="ie ie7" lang="en-US">
-<![endif]-->
-<!--[if IE 8]>
-<html class="ie ie8" lang="en-US">
-<![endif]-->
-<!--[if !(IE 7) | !(IE 8) ]><!-->
-<html lang="en-US">
-<!--<![endif]--><head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?php echo $this->settings['app_name']; ?>:: <?php echo $Title; ?></title>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-    <!--Google Font-->
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css" type="text/css" media="screen">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/demo_table.css" type="text/css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
+<html lang="en">
 
-    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+    <link rel="shortcut icon" href="<?= base_url() ?>img/indobypass_icon_new.png">
 
-    
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <!-- Styles -->
+    <!-- Fonts and icons -->
+    <script src="<?= site_url() ?>assets/assets_members/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ["Public Sans:300,400,500,600,700"]
+        },
+        custom: {
+            families: [
+                "Font Awesome 5 Solid",
+                "Font Awesome 5 Regular",
+                "Font Awesome 5 Brands",
+                "simple-line-icons",
+            ],
+            urls: ["<?= site_url() ?>assets/assets_members/css/fonts.min.css"],
+        },
+        active: function() {
+            sessionStorage.fonts = true;
+        },
+    });
+    </script>
 
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="<?= site_url() ?>assets/assets_members/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?= site_url() ?>assets/assets_members/css/plugins.min.css" />
+    <link rel="stylesheet" href="<?= site_url() ?>assets/assets_members/css/kaiadmin.min.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>assets/assets_members/libs/dataTables/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>assets/assets_members/libs/dataTables/custom.jquery.dataTables.css" />
 </head>
 
 <body>
-<header>
-<div class="welcome-bar">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <ul>
-                    <li class="name"><?php echo $this->lang->line('header_welcome_back') ?> <span><?php echo $this->session->userdata('MemberFirstName') ." ". $this->session->userdata("MemberLastName"); ?></span></li>
-                    <li><?php echo $this->lang->line('header_balance') ?> : <?php echo number_format($credit, 2) ?> <?php echo $this->lang->line('header_credits') ?></li>
-                    <li><a href="<?php echo site_url('member/dashboard/addfund'); ?>">+<?php echo $this->lang->line('header_add_fund') ?></a></li>
-                </ul>
+    <div class="wrapper sidebar_minimize">
+        <!-- Sidebar -->
+        <div class="sidebar sidebar-style-2" data-background-color="dark">
+            <div class="sidebar-logo">
+                <!-- Logo Header -->
+                <div class="logo-header" data-background-color="dark">
+                    <a href="<?= site_url() ?>member/dashboard" class="logo">
+                        <img src="<?= site_url() ?>img/indobypass_logo_new.png" alt="navbar brand" class="navbar-brand"
+                            height="80" />
+                    </a>
+                    <div class="nav-toggle">
+                        <button class="btn btn-toggle toggle-sidebar">
+                            <i class="gg-menu-right"></i>
+                        </button>
+                        <button class="btn btn-toggle sidenav-toggler">
+                            <i class="gg-menu-left"></i>
+                        </button>
+                    </div>
+                    <button class="topbar-toggler more">
+                        <i class="gg-more-vertical-alt"></i>
+                    </button>
+                </div>
+                <!-- End Logo Header -->
             </div>
-            <div class="col-lg-6">
-                <div class="pull-right">
-
+            <div class="sidebar-wrapper scrollbar scrollbar-inner">
+                <div class="sidebar-content">
+                    <ul class="nav nav-secondary">
+                        <li class="nav-section">
+                            <span class="sidebar-mini-icon">
+                                <i class="fa fa-ellipsis-h"></i>
+                            </span>
+                            <h4 class="text-section">Menus</h4>
+                        </li>
+                        <li class="nav-item active">
+                            <a data-bs-toggle="collapse" href="#base">
+                                <i class="fas fa-home"></i>
+                                <p>Home</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-bs-toggle="collapse" href="#base">
+                                <i class="fas fa-pen-square"></i>
+                                <p>IMEI Request</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-bs-toggle="collapse" href="#base">
+                                <i class="fas fa-th-list"></i>
+                                <p>IMEI History</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarLayouts">
+                                <i class="fas fa-server"></i>
+                                <p>Server Reuqest</p>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-3">
-            <h1 class="home-logo"><a href="<?php echo site_url(); ?>" class="logo"></a></h1>
-        </div>
-        <div class="col-lg-9">
-            <a href="<?php echo site_url('logout') ?>" class="btn btn-danger pull-right logout-btn" ><?php echo $this->lang->line('header_logout') ?></a>
-        </div>
-    </div>
-</div>
-</header>
-<div id="content">
-	<div class="container">
-		<div role="navigation" class="navbar navbar-inverse navbar-static-top">
-			<div class="container">
-			<div class="navbar-collapse collapse ">
-				<ul class="nav navbar-nav">
-				<li <?php echo($this->uri->uri_string()=='member/dashboard'?'class="active"':''); ?>><a href="<?php echo site_url('member/dashboard'); ?>"><?php echo $this->lang->line('menu_home') ?></a></li>
-				<li <?php echo($this->uri->uri_string(2)=='member/imeirequest'?'class="active"':''); ?>><a href="<?php echo site_url('member/imeirequest'); ?>"><?php echo $this->lang->line('menu_imie_request') ?></a></li>
-				<li <?php echo($this->uri->uri_string(2)=='member/imeirequest/history'?'class="active"':''); ?>><a href="<?php echo site_url('member/imeirequest/history'); ?>"><?php echo $this->lang->line('menu_imei_history') ?></a></li>
-				<?php /*<li <?php echo($this->uri->uri_string(2)=='member/imeirequest/verify'?'class="active"':''); ?>><a href="<?php echo site_url('member/imeirequest/verify'); ?>">Verify IMEI Request</a></li>*/ ?>            
-                <li <?php echo($this->uri->uri_string(2)=='member/serverrequest'?'class="active"':''); ?>><a href="<?php echo site_url('member/serverrequest'); ?>">Server Request</a></li>
-				<li <?php echo($this->uri->uri_string(2)=='member/dashboard/profile'?'class="active"':''); ?>><a href="<?php echo site_url('member/dashboard/profile'); ?>"><?php echo $this->lang->line('menu_my_account') ?></a></li>
-                <?php /*<li <?php echo($this->uri->uri_string(2)=='member/dashboard/profile'?'class="active"':''); ?>><a href="/helpdesk/open.php" target="helpdesk"><?php echo $this->lang->line('menu_helpdesk') ?></a></li>*/ ?>
-				</ul>
-			</div>
-			</div>
-		</div>    
-	<?php $this->load->view($template); ?>
-	</div>
-</div>
-<footer class="home-footer clearfix">
-<address><?php echo $this->settings['app_footer']; ?></address>
-<!-- <p class="powerd-text">Powered By IMEI.Network</p> -->
-</footer>
-<script type='text/javascript' src='<?php echo base_url(); ?>assets/js/jquery.cookie.js'></script>
-<script type="text/javascript" language="javascript" src="<?php echo base_url(); ?>js/bootstrap.js"></script>
-<script type="text/javascript" language="javascript" src="<?php echo base_url(); ?>js/jquery.dataTables.js"></script>
+        <!-- End Sidebar -->
 
-<!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
-<script src="<?php echo base_url(); ?>js/jquery.knob.js"></script>
-<script type="text/javascript" charset="utf-8">
-var asInitVals = new Array();
-    
-$(document).ready(function() {
-    var oTable = $('#example2').dataTable( {
-        "oLanguage": {
-            "sSearch": "Search all columns:"
-        }
-    } );
-    
-    $("tfoot input").keyup( function () {
-        /* Filter on the column (the index) of this element */
-        oTable.fnFilter( this.value, $("tfoot input").index(this) );
-    } );
-    
-    
-    
-    /*
-        * Support functions to provide a little bit of 'user friendlyness' to the textboxes in 
-        * the footer
-        */
-    $("tfoot input").each( function (i) {
-        asInitVals[i] = this.value;
-    } );
-    
-    $("tfoot input").focus( function () {
-        if ( this.className == "search_init" )
-        {
-            this.className = "";
-            this.value = "";
-        }
-    } );
-    
-    $("tfoot input").blur( function (i) {
-        if ( this.value == "" )
-        {
-            this.className = "search_init";
-            this.value = asInitVals[$("tfoot input").index(this)];
-        }
-    } );
-    
-    
-} );
-$(document).ready(function() {
-    var oTable = $('#example').dataTable( {
-        "oLanguage": {
-            "sSearch": "Search all columns:"
-        }
-    } );
-    
-    $("tfoot input").keyup( function () {
-        /* Filter on the column (the index) of this element */
-        oTable.fnFilter( this.value, $("tfoot input").index(this) );
-    } );
-    
-    
-    
-    /*
-        * Support functions to provide a little bit of 'user friendlyness' to the textboxes in 
-        * the footer
-        */
-    $("tfoot input").each( function (i) {
-        asInitVals[i] = this.value;
-    } );
-    
-    $("tfoot input").focus( function () {
-        if ( this.className == "search_init" )
-        {
-            this.className = "";
-            this.value = "";
-        }
-    } );
-    
-    $("tfoot input").blur( function (i) {
-        if ( this.value == "" )
-        {
-            this.className = "search_init";
-            this.value = asInitVals[$("tfoot input").index(this)];
-        }
-    } );
-} );
-</script>
-<?php echo $this->settings['chat_code']; ?>
-</body>       
+        <div class="main-panel">
+            <div class="main-header">
+                <div class="main-header-logo">
+                    <!-- Logo Header -->
+                    <div class="logo-header" data-background-color="dark">
+                        <a href="index.html" class="logo">
+                            <img src="<?= site_url() ?>assets/assets_members/img/kaiadmin/logo_light.svg"
+                                alt="navbar brand" class="navbar-brand" height="20" />
+                        </a>
+                        <div class="nav-toggle">
+                            <button class="btn btn-toggle toggle-sidebar">
+                                <i class="gg-menu-right"></i>
+                            </button>
+                            <button class="btn btn-toggle sidenav-toggler">
+                                <i class="gg-menu-left"></i>
+                            </button>
+                        </div>
+                        <button class="topbar-toggler more">
+                            <i class="gg-more-vertical-alt"></i>
+                        </button>
+                    </div>
+                    <!-- End Logo Header -->
+                </div>
+                <!-- Navbar Header -->
+                <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
+                    <div class="container-fluid">
+                        <nav
+                            class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
+                            <img src="<?= base_url() ?>img/indobypass_icon_new.png" alt="" height="40">
+                        </nav>
+
+                        <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                            <li class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                    aria-expanded="false" aria-haspopup="true">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-search animated fadeIn">
+                                    <form class="navbar-left navbar-form nav-search">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Search ..." class="form-control" />
+                                        </div>
+                                    </form>
+                                </ul>
+                            </li>
+                            <li class="nav-item topbar-icon dropdown hidden-caret">
+                                <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-bell"></i>
+                                    <span class="notification">4</span>
+                                </a>
+                                <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
+                                    <li>
+                                        <div class="dropdown-title">
+                                            You have 4 new notification
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="notif-scroll scrollbar-outer">
+                                            <div class="notif-center">
+                                                <a href="#">
+                                                    <div class="notif-icon notif-primary">
+                                                        <i class="fa fa-user-plus"></i>
+                                                    </div>
+                                                    <div class="notif-content">
+                                                        <span class="block"> New user registered </span>
+                                                        <span class="time">5 minutes ago</span>
+                                                    </div>
+                                                </a>
+                                                <a href="#">
+                                                    <div class="notif-icon notif-success">
+                                                        <i class="fa fa-comment"></i>
+                                                    </div>
+                                                    <div class="notif-content">
+                                                        <span class="block">
+                                                            Rahmad commented on Admin
+                                                        </span>
+                                                        <span class="time">12 minutes ago</span>
+                                                    </div>
+                                                </a>
+                                                <a href="#">
+                                                    <div class="notif-img">
+                                                        <img src="<?= site_url() ?>assets/assets_members/img/profile2.jpg"
+                                                            alt="Img Profile" />
+                                                    </div>
+                                                    <div class="notif-content">
+                                                        <span class="block">
+                                                            Reza send messages to you
+                                                        </span>
+                                                        <span class="time">12 minutes ago</span>
+                                                    </div>
+                                                </a>
+                                                <a href="#">
+                                                    <div class="notif-icon notif-danger">
+                                                        <i class="fa fa-heart"></i>
+                                                    </div>
+                                                    <div class="notif-content">
+                                                        <span class="block"> Farrah liked Admin </span>
+                                                        <span class="time">17 minutes ago</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="see-all" href="javascript:void(0);">See all notifications<i
+                                                class="fa fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item topbar-user dropdown hidden-caret">
+                                <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
+                                    aria-expanded="false">
+                                    <div class="avatar-sm">
+                                        <img src="<?= site_url() ?>assets/assets_members/img/profile.jpg" alt="..."
+                                            class="avatar-img rounded-circle" />
+                                    </div>
+                                    <span class="profile-username">
+                                        <span class="op-7">Hi,</span>
+                                        <span
+                                            class="fw-bold"><?= $this->session->userdata('MemberFirstName') . " " . $this->session->userdata("MemberLastName");?></span>
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user animated fadeIn">
+                                    <div class="dropdown-user-scroll scrollbar-outer">
+                                        <li>
+                                            <div class="user-box">
+                                                <div class="avatar-lg">
+                                                    <img src="<?= site_url() ?>assets/assets_members/img/profile.jpg"
+                                                        alt="image profile" class="avatar-img rounded" />
+                                                </div>
+                                                <div class="u-text">
+                                                    <h4><?= $this->session->userdata('MemberFirstName') . " " . $this->session->userdata("MemberLastName");?>
+                                                    </h4>
+                                                    <p class="text-muted">
+                                                        <?php echo $this->session->userdata("MemberEmail"); ?></p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">My Profile</a>
+                                            <a class="dropdown-item" href="#">My Balance</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="<?= site_url('logout') ?>">Logout</a>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- End Navbar -->
+            </div>
+
+            <!-- content -->
+            <div class="container">
+                <div class="page-inner">
+                    <?php $this->load->view($content); ?>
+                </div>
+            </div>
+            <!-- content -->
+
+            <footer class="footer">
+                <div class="container-fluid d-flex justify-content-between">
+                    <nav class="pull-left">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://www.themekita.com">
+                                    ThemeKita
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> Help </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> Licenses </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright">
+                        2024, made with <i class="fa fa-heart heart text-danger"></i> by
+                        <a href="http://www.themekita.com">ThemeKita</a>
+                    </div>
+                    <div>
+                        Distributed by
+                        <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Custom template | don't include it in your project! -->
+        <div class="custom-template">
+            <div class="title">Settings</div>
+            <div class="custom-content">
+                <div class="switcher">
+                    <div class="switch-block">
+                        <h4>Logo Header</h4>
+                        <div class="btnSwitch">
+                            <button type="button" class="selected changeLogoHeaderColor" data-color="dark"></button>
+                            <button type="button" class="changeLogoHeaderColor" data-color="blue"></button>
+                            <button type="button" class="changeLogoHeaderColor" data-color="purple"></button>
+                            <button type="button" class="changeLogoHeaderColor" data-color="light-blue"></button>
+                            <button type="button" class="changeLogoHeaderColor" data-color="green"></button>
+                            <button type="button" class="changeLogoHeaderColor" data-color="orange"></button>
+                            <button type="button" class="changeLogoHeaderColor" data-color="red"></button>
+                            <button type="button" class="changeLogoHeaderColor" data-color="white"></button>
+                            <br />
+                            <button type="button" class="changeLogoHeaderColor" data-color="dark2"></button>
+                            <button type="button" class="changeLogoHeaderColor" data-color="blue2"></button>
+                            <button type="button" class="changeLogoHeaderColor" data-color="purple2"></button>
+                            <button type="button" class="changeLogoHeaderColor" data-color="light-blue2"></button>
+                            <button type="button" class="changeLogoHeaderColor" data-color="green2"></button>
+                            <button type="button" class="changeLogoHeaderColor" data-color="orange2"></button>
+                            <button type="button" class="changeLogoHeaderColor" data-color="red2"></button>
+                        </div>
+                    </div>
+                    <div class="switch-block">
+                        <h4>Navbar Header</h4>
+                        <div class="btnSwitch">
+                            <button type="button" class="changeTopBarColor" data-color="dark"></button>
+                            <button type="button" class="changeTopBarColor" data-color="blue"></button>
+                            <button type="button" class="changeTopBarColor" data-color="purple"></button>
+                            <button type="button" class="changeTopBarColor" data-color="light-blue"></button>
+                            <button type="button" class="changeTopBarColor" data-color="green"></button>
+                            <button type="button" class="changeTopBarColor" data-color="orange"></button>
+                            <button type="button" class="changeTopBarColor" data-color="red"></button>
+                            <button type="button" class="selected changeTopBarColor" data-color="white"></button>
+                            <br />
+                            <button type="button" class="changeTopBarColor" data-color="dark2"></button>
+                            <button type="button" class="changeTopBarColor" data-color="blue2"></button>
+                            <button type="button" class="changeTopBarColor" data-color="purple2"></button>
+                            <button type="button" class="changeTopBarColor" data-color="light-blue2"></button>
+                            <button type="button" class="changeTopBarColor" data-color="green2"></button>
+                            <button type="button" class="changeTopBarColor" data-color="orange2"></button>
+                            <button type="button" class="changeTopBarColor" data-color="red2"></button>
+                        </div>
+                    </div>
+                    <div class="switch-block">
+                        <h4>Sidebar</h4>
+                        <div class="btnSwitch">
+                            <button type="button" class="changeSideBarColor" data-color="white"></button>
+                            <button type="button" class="selected changeSideBarColor" data-color="dark"></button>
+                            <button type="button" class="changeSideBarColor" data-color="dark2"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="custom-toggle">
+                <i class="icon-settings"></i>
+            </div>
+        </div>
+        <!-- End Custom template -->
+    </div>
+    <!--   Core JS Files   -->
+    <script src="<?= site_url() ?>assets/assets_members/js/core/jquery-3.7.1.min.js"></script>
+    <script src="<?= site_url() ?>assets/assets_members/js/core/popper.min.js"></script>
+    <script src="<?= site_url() ?>assets/assets_members/js/core/bootstrap.min.js"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="<?= site_url() ?>assets/assets_members/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="<?= site_url() ?>assets/assets_members/js/plugin/chart.js/chart.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="<?= site_url() ?>assets/assets_members/libs/dataTables/jquery.dataTables.min.js"></script>
+    <script src="<?= site_url() ?>assets/assets_members/libs/dataTables/dataTables-input.js"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="<?= site_url() ?>assets/assets_members/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="<?= site_url() ?>assets/assets_members/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="<?= site_url() ?>assets/assets_members/js/kaiadmin.min.js"></script>
+
+    <script src="<?= site_url() ?>assets/assets_members/modules/<?= $content_js ?>"></script>
+</body>
+
 </html>

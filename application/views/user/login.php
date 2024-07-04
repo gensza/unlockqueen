@@ -5,9 +5,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="<?= site_url() ?>img/indobypass_icon_new.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/assets_members/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?= site_url() ?>assets/assets_members/css/bootstrap.min.css" />
 
 	<title><?php echo $this->settings['app_name']; ?>:: <?php echo $title; ?></title>
 </head>
@@ -50,11 +51,11 @@
         <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
             <div class="row gx-lg-5 align-items-center mb-5">
                 <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-                    <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-                        <img src="img/mini1.png" alt="">
+                    <h1 class="display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+                        <img src="<?= site_url() ?>img/indobypass_logo_new.png" height="200" alt="">
                     </h1>
                     <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-                        iCloud MEID / GSM BYPASS WITH SIGNAL SERVICE ON
+                        &emsp;iCloud MEID / GSM BYPASS WITH SIGNAL SERVICE ON
                     </p>
                 </div>
 
@@ -105,7 +106,7 @@
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="assets/assets_members/js/core/bootstrap.min.js"></script>
+    <script src="<?= site_url() ?>assets/assets_members/js/core/bootstrap.min.js"></script>
 
 </body>
 

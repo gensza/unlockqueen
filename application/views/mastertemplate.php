@@ -71,14 +71,16 @@
                             </span>
                             <h4 class="text-section">Menus</h4>
                         </li>
-                        <li class="nav-item active">
-                            <a data-bs-toggle="collapse" href="#base">
+                        <li
+                            <?= $this->uri->uri_string(2)=='member/dashboard'?'class="nav-item active"':'class="nav-item"'; ?>>
+                            <a href="<?= site_url() ?>member/dashboard">
                                 <i class="fas fa-home"></i>
                                 <p>Home</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#base">
+                        <li
+                            <?= $this->uri->uri_string(2)=='member/imeirequest'?'class="nav-item active"':'class="nav-item"'; ?>>
+                            <a href="<?= site_url() ?>member/imeirequest">
                                 <i class="fas fa-pen-square"></i>
                                 <p>IMEI Request</p>
                             </a>

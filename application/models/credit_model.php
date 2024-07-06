@@ -105,6 +105,24 @@ class credit_model extends CI_Model
 				->where("$this->tbl_name.MemberID", $id);	
 		return $this->odatatables->generate();
 	}	
+
+	public function get_credit_data_new($id, $start, $length, $cari_data)
+	{
+		$this->db->select("$this->tbl_name.ID, CONCAT($this->tbl_name.TransactionCode, $this->tbl_name.TransactionID) AS Code", FALSE)				
+				->select("$this->tbl_name.Amount, $this->tbl_name.Description, $this->tbl_name.CreatedDateTime", TRUE)
+				->from($this->tbl_name)
+				->join($this->mem_tbl, "$this->tbl_name.MemberID=$this->mem_tbl.ID", "inner")
+				->where("$this->tbl_name.MemberID", $id)
+				->like('TransactionCode', $cari_data, 'both')
+				->or_like('Amount', $cari_data, 'both')
+				->or_like('Description', $cari_data, 'both')
+				->or_like("$this->tbl_name.CreatedDateTime", $cari_data, 'both')
+				->limit($length, $start)
+				->order_by("$this->tbl_name.ID", "desc");
+
+		return $this->db->get()->result_array();					
+
+	}	
 	
 	public function get_datatable()
 	{

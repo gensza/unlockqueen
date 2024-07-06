@@ -1,10 +1,35 @@
 // Function to initialize a doughnut chart
 $(document).ready(function () {
-    DataTableView()
+    historyOrderTable("IMEI Orders");
 });
 
-function DataTableView() {
-    new DataTable('#table_data', {
+function historyOrderTable(param) {
+
+    $("#titleOrderHistory").text(param);
+
+    if (param == "IMEI Orders") {
+        DataTableImei();
+        $('#tableDataImei').css("display", "block");
+        $('#tableDataServer').css("display", "none");
+        $('#tableDataCredit').css("display", "none");
+    } else if (param == "Server Orders") {
+        DataTableServer();
+        $('#tableDataImei').css("display", "none");
+        $('#tableDataServer').css("display", "block");
+        $('#tableDataCredit').css("display", "none");
+    } else {
+        DataTableCredit();
+        $('#tableDataImei').css("display", "none");
+        $('#tableDataServer').css("display", "none");
+        $('#tableDataCredit').css("display", "block");
+    }
+
+}
+
+function DataTableImei() {
+
+    $("#table_data_imei").DataTable().destroy();
+    new DataTable('#table_data_imei', {
 
         ajax: {
             url: base_url + "member/dashboard/listener_new",
@@ -30,6 +55,65 @@ function DataTableView() {
         searching: true,
     });
 }
+
+function DataTableServer() {
+
+    $("#table_data_server").DataTable().destroy();
+    new DataTable('#table_data_server', {
+
+        ajax: {
+            url: base_url + "member/dashboard/serverorder_new",
+            type: 'POST',
+            "data": {}
+        },
+        columns: [
+            { data: "no" },
+            { data: "service" },
+            { data: "code" },
+            { data: "email" },
+            { data: "note" },
+            { data: "status" },
+            { data: "created_at" },
+        ],
+
+        pagingType: "input",
+        "processing": true,
+        "serverSide": true,
+        bInfo: false,
+        ordering: false,
+        deferRender: true,
+        searching: true,
+    });
+}
+
+function DataTableCredit() {
+
+    $("#table_data_credit").DataTable().destroy();
+    new DataTable('#table_data_credit', {
+
+        ajax: {
+            url: base_url + "member/dashboard/credit_new",
+            type: 'POST',
+            "data": {}
+        },
+        columns: [
+            { data: "no" },
+            { data: "code" },
+            { data: "amount" },
+            { data: "description" },
+            { data: "created_at" },
+        ],
+
+        pagingType: "input",
+        "processing": true,
+        "serverSide": true,
+        bInfo: false,
+        ordering: false,
+        deferRender: true,
+        searching: true,
+    });
+}
+
 function initializeDoughnutChart(chartElement, chartData, chartOptions) {
     var ctx = chartElement.getContext('2d');
 

@@ -1,5 +1,5 @@
 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-2">
-    <div class="col-xl-3 col-lg-3 col-md-2 col-sm-1">
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
         <div class="card card-stats card-round">
             <div class="card-body">
                 <div class="row align-items-center">
@@ -23,45 +23,45 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xl-3 col-lg-3 col-md-2 col-sm-1">
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
         <div class="card">
             <div class="card-header">
                 <div class="card-title">Available</div>
             </div>
             <div class="card-body">
                 <div class="chart-container">
-                    <canvas id="doughnutChartAvailable"></canvas>
+                    <canvas id="doughnutChartAvailable" style="margin-top: -30px;margin-bottom: -20px"></canvas>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-lg-3 col-md-2 col-sm-1">
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
         <div class="card">
             <div class="card-header">
                 <div class="card-title">Rejected</div>
             </div>
             <div class="card-body">
                 <div class="chart-container">
-                    <canvas id="doughnutChartRejected"></canvas>
+                    <canvas id="doughnutChartRejected" style="margin-top: -30px;margin-bottom: -20px"></canvas>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-lg-3 col-md-2 col-sm-1">
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
         <div class="card">
             <div class="card-header">
                 <div class="card-title">Pending</div>
             </div>
             <div class="card-body">
                 <div class="chart-container">
-                    <canvas id="doughnutChartPending"></canvas>
+                    <canvas id="doughnutChartPending" style="margin-top: -30px;margin-bottom: -20px"></canvas>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-lg-3 col-md-2 col-sm-1">
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
         <div class="card card-profile">
-            <div class="card-header">
+            <div class="card-header" style="height: 62px">
                 <div class="profile-picture">
                     <div class="avatar avatar-xl">
                         <img src="<?= base_url() ?>assets/img/profile/profile.jpg" alt="..."
@@ -103,7 +103,8 @@
         <div class="card card-round">
             <div class="card-header">
                 <div class="card-head-row card-tools-still-right">
-                    <div class="card-title">IMEI Orders</div>
+                    <div class="card-title"><span id="titleOrderHistory">IMEI
+                            Orders</span></div>
                     <div class="card-tools">
                         <div class="dropdown">
                             <button class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton"
@@ -111,18 +112,22 @@
                                 <i class="fas fa-ellipsis-h"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">IMEI Orders</a>
-                                <a class="dropdown-item" href="#">Server Orders</a>
-                                <a class="dropdown-item" href="#">Credits</a>
+                                <button class="dropdown-item" onclick="historyOrderTable('IMEI Orders')">IMEI
+                                    Orders</button>
+                                <button class="dropdown-item" onclick="historyOrderTable('Server Orders')">Server
+                                    Orders</button>
+                                <button class="dropdown-item" onclick="historyOrderTable('Credits')">Credits</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card-body p-0">
+
+            <!-- data table for IMEI -->
+            <div class="card-body p-0" id="tableDataImei">
                 <div class="table-responsive p-5">
                     <!-- Projects table -->
-                    <table id="table_data" class="table table-sm table-striped table-hover" style="width:100%">
+                    <table id="table_data_imei" class="table table-sm table-striped table-hover" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -131,6 +136,44 @@
                                 <th>Service</th>
                                 <th>Code</th>
                                 <th>Status</th>
+                                <th>Created at</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+            <!-- data table for Server -->
+            <div class="card-body p-0" id="tableDataServer">
+                <div class="table-responsive p-5">
+                    <!-- Projects table -->
+                    <table id="table_data_server" class="table table-sm table-striped table-hover" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Service</th>
+                                <th>Code</th>
+                                <th>Email</th>
+                                <th>Note</th>
+                                <th>Status</th>
+                                <th>Created at</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+            <!-- data table for Credits -->
+            <div class="card-body p-0" id="tableDataCredit">
+                <div class="table-responsive p-5">
+                    <!-- Projects table -->
+                    <table id="table_data_credit" class="table table-sm table-striped table-hover" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Code</th>
+                                <th>Amount</th>
+                                <th>Description</th>
                                 <th>Created at</th>
                             </tr>
                         </thead>

@@ -30,6 +30,10 @@ class imeirequest extends FSD_Controller
 		$data['template'] = "member/imei/request";
 		$id = $this->session->userdata('MemberID');
 		$data['credit'] = $this->credit_model->get_credit($id);
+
+		$data['content'] = "member/imei/request";
+		$data['content_js'] = "member/imeirequest.js";
+
 		$this->load->view('mastertemplate', $data);
 	}
 	

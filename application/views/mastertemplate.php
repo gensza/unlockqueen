@@ -263,6 +263,8 @@
             <!-- content -->
             <div class="container">
                 <div class="page-inner">
+                    <script src="<?= site_url() ?>assets/assets_members/js/core/jquery-3.7.1.min.js"></script>
+
                     <?php $this->load->view($content); ?>
                 </div>
             </div>
@@ -297,71 +299,8 @@
             </footer>
         </div>
 
-        <!-- Custom template | don't include it in your project! -->
-        <div class="custom-template">
-            <div class="title">Settings</div>
-            <div class="custom-content">
-                <div class="switcher">
-                    <div class="switch-block">
-                        <h4>Logo Header</h4>
-                        <div class="btnSwitch">
-                            <button type="button" class="selected changeLogoHeaderColor" data-color="dark"></button>
-                            <button type="button" class="changeLogoHeaderColor" data-color="blue"></button>
-                            <button type="button" class="changeLogoHeaderColor" data-color="purple"></button>
-                            <button type="button" class="changeLogoHeaderColor" data-color="light-blue"></button>
-                            <button type="button" class="changeLogoHeaderColor" data-color="green"></button>
-                            <button type="button" class="changeLogoHeaderColor" data-color="orange"></button>
-                            <button type="button" class="changeLogoHeaderColor" data-color="red"></button>
-                            <button type="button" class="changeLogoHeaderColor" data-color="white"></button>
-                            <br />
-                            <button type="button" class="changeLogoHeaderColor" data-color="dark2"></button>
-                            <button type="button" class="changeLogoHeaderColor" data-color="blue2"></button>
-                            <button type="button" class="changeLogoHeaderColor" data-color="purple2"></button>
-                            <button type="button" class="changeLogoHeaderColor" data-color="light-blue2"></button>
-                            <button type="button" class="changeLogoHeaderColor" data-color="green2"></button>
-                            <button type="button" class="changeLogoHeaderColor" data-color="orange2"></button>
-                            <button type="button" class="changeLogoHeaderColor" data-color="red2"></button>
-                        </div>
-                    </div>
-                    <div class="switch-block">
-                        <h4>Navbar Header</h4>
-                        <div class="btnSwitch">
-                            <button type="button" class="changeTopBarColor" data-color="dark"></button>
-                            <button type="button" class="changeTopBarColor" data-color="blue"></button>
-                            <button type="button" class="changeTopBarColor" data-color="purple"></button>
-                            <button type="button" class="changeTopBarColor" data-color="light-blue"></button>
-                            <button type="button" class="changeTopBarColor" data-color="green"></button>
-                            <button type="button" class="changeTopBarColor" data-color="orange"></button>
-                            <button type="button" class="changeTopBarColor" data-color="red"></button>
-                            <button type="button" class="selected changeTopBarColor" data-color="white"></button>
-                            <br />
-                            <button type="button" class="changeTopBarColor" data-color="dark2"></button>
-                            <button type="button" class="changeTopBarColor" data-color="blue2"></button>
-                            <button type="button" class="changeTopBarColor" data-color="purple2"></button>
-                            <button type="button" class="changeTopBarColor" data-color="light-blue2"></button>
-                            <button type="button" class="changeTopBarColor" data-color="green2"></button>
-                            <button type="button" class="changeTopBarColor" data-color="orange2"></button>
-                            <button type="button" class="changeTopBarColor" data-color="red2"></button>
-                        </div>
-                    </div>
-                    <div class="switch-block">
-                        <h4>Sidebar</h4>
-                        <div class="btnSwitch">
-                            <button type="button" class="changeSideBarColor" data-color="white"></button>
-                            <button type="button" class="selected changeSideBarColor" data-color="dark"></button>
-                            <button type="button" class="changeSideBarColor" data-color="dark2"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="custom-toggle">
-                <i class="icon-settings"></i>
-            </div>
-        </div>
-        <!-- End Custom template -->
     </div>
     <!--   Core JS Files   -->
-    <script src="<?= site_url() ?>assets/assets_members/js/core/jquery-3.7.1.min.js"></script>
     <script src="<?= site_url() ?>assets/assets_members/js/core/popper.min.js"></script>
     <script src="<?= site_url() ?>assets/assets_members/js/core/bootstrap.min.js"></script>
 
@@ -384,7 +323,42 @@
     <!-- Kaiadmin JS -->
     <script src="<?= site_url() ?>assets/assets_members/js/kaiadmin.min.js"></script>
 
+    <!-- Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+    function loading_processing() {
+        loadingPannel = (function() {
+            var lpDialog = $("" +
+                "<div class='modal fade' id='lpDialog' data-backdrop='static' data-keyboard='false' style='width: 150px;height: 150px;margin:0 auto;display:table;left: 0;right:0;top: 50%;-webkit-transform:translateY(-50%);-moz-transform:translateY(-50%);-ms-transform:translateY(-50%);-o-transform:translateY(-50%);'>" +
+                "<div class='modal-dialog' >" +
+                "<div class='modal-content'>" +
+                // "<div class='modal-header'><b>Loading...</b></div>" + //Processing
+                "<div class='modal-body'>" +
+                "<div style='text-align:center'>" +
+                "<div class='spinner-border' role='status'>" +
+                "<span class='visually-hidden'></span>" +
+                "</div>" +
+                "<br> Processing ..." +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>");
+            return {
+                show: function() {
+                    lpDialog.modal('show');
+                },
+                hide: function() {
+                    lpDialog.modal('hide');
+                }
+            };
+        })();
+    }
+    </script>
+
     <script src="<?= site_url() ?>assets/assets_members/modules/<?= $content_js ?>"></script>
+
 </body>
 
 </html>

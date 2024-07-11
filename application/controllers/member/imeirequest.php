@@ -32,7 +32,7 @@ class imeirequest extends FSD_Controller
 		$data['credit'] = $this->credit_model->get_credit($id);
 
 		$data['content'] = "member/imei/request";
-		$data['content_js'] = "member/imeirequest.js";
+		$data['content_js'] = "imei_request/imeiRequest.js";
 
 		$this->load->view('mastertemplate', $data);
 	}
@@ -266,7 +266,8 @@ class imeirequest extends FSD_Controller
     			}
 
 			}						
-			$this->session->set_flashdata('success', $this->lang->line('error_record_addes_successfully'));
+			$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert" role="danger"> '.$this->lang->line('error_record_addes_successfully').'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+
 			redirect("member/imeirequest/");
 		}
 	}

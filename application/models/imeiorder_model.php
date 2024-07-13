@@ -191,7 +191,20 @@ class imeiorder_model extends CI_Model
 				->order_by("$this->tbl_name.ID", "desc");
 				
 				return $this->db->get()->result_array();					
-	}	
+	}
+	
+	public function get_imei_data_select_new($id, $param, $start, $length, $cari_data)
+	{
+		if(!empty($cari_data)){
+			$sql = "SELECT $this->tbl_name.ID, $this->tbl_name.IMEI, $this->tbl_method.Title, $this->tbl_name.Code, $this->tbl_name.Note, $this->tbl_name.Status,  $this->tbl_name.CreatedDateTime FROM $this->tbl_name INNER JOIN $this->tbl_method ON $this->tbl_name.MethodID=$this->tbl_method.ID WHERE $this->tbl_name.MemberID = '$id' AND $this->tbl_name.Status = '$param' AND($this->tbl_name.IMEI LIKE '%$cari_data%' OR $this->tbl_method.Title LIKE '%$cari_data%' OR $this->tbl_name.Code LIKE '%$cari_data%' OR $this->tbl_name.Note LIKE '%$cari_data%') ORDER BY $this->tbl_name.ID DESC LIMIT $start, $length";
+		}else{
+			$sql = "SELECT $this->tbl_name.ID, $this->tbl_name.IMEI, $this->tbl_method.Title, $this->tbl_name.Code, $this->tbl_name.Note, $this->tbl_name.Status,  $this->tbl_name.CreatedDateTime FROM $this->tbl_name INNER JOIN $this->tbl_method ON $this->tbl_name.MethodID=$this->tbl_method.ID WHERE $this->tbl_name.MemberID = '$id' AND $this->tbl_name.Status = '$param' ORDER BY $this->tbl_name.ID DESC LIMIT $start, $length";
+		}
+
+		$result = $this->db->query($sql);
+		
+		return $result->result_array();					
+	}
 	
 	public function get_imei_data_select($id,$status)
 	{

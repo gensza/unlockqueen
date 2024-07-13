@@ -45,7 +45,6 @@
                         </div>
 
                     </div>
-                    <div id="load-field"></div>
 
                     <div class="form-group">
                         <label class="control-label"><?php echo $this->lang->line('imei_fields_imei_sr') ?></label>
@@ -88,34 +87,67 @@
     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">IMEI History</div>
+                <div class="card-title">Description</div>
             </div>
             <div class="card-body pb-0">
-                <div class="d-flex">
-                    <button class="btn btn-label-success btn-round active w-100"
-                        onclick="historyOrderTable('IMEI Orders')">
-                        Available <i class="fas fa-check-circle"></i> </button>
-                </div>
+                <div id="load-field"><i class="text-muted" id="desc_service">Description for service selected!</i></div>
                 <div class="separator-dashed"></div>
-                <div class="d-flex">
-                    <button class="btn btn-label-warning btn-round active w-100"
-                        onclick="historyOrderTable('IMEI Orders')">
-                        Pending <i class="fas fas fa-clock"></i> </button>
-                </div>
-                <div class="separator-dashed"></div>
-                <div class="d-flex">
-                    <button class="btn btn-label-danger btn-round active w-100"
-                        onclick="historyOrderTable('IMEI Orders')">
-                        Canceled <i class="fas fa-times-circle"></i> </button>
-                </div>
-                <div class="separator-dashed"></div>
-                <div class="pull-in">
-                    <canvas id="topProductsChart"></canvas>
+                <div class="mb-5">
+                    <p class="card-title mb-2">IMEI History</p>
+                    <div class="d-flex">
+                        <button class="btn btn-label-success btn-round active w-100"
+                            onclick="historyOrderTable('Issued')">
+                            Available <i class="fas fa-check-circle"></i> </button>
+                    </div>
+                    <div class="separator-dashed"></div>
+                    <div class="d-flex">
+                        <button class="btn btn-label-warning btn-round active w-100"
+                            onclick="historyOrderTable('Pending')">
+                            Pending <i class="fas fas fa-clock"></i> </button>
+                    </div>
+                    <div class="separator-dashed"></div>
+                    <div class="d-flex">
+                        <button class="btn btn-label-danger btn-round active w-100"
+                            onclick="historyOrderTable('Canceled')">
+                            Canceled <i class="fas fa-times-circle"></i> </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- modal for datatable imei history -->
+<!-- Modal -->
+<div class="modal fade" id="historyOrderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">IMEI History Available</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive p-3">
+                    <!-- Projects table -->
+                    <table id="table_data_imei" class="table table-sm table-striped table-hover" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>IMEI</th>
+                                <th>Service</th>
+                                <th>Code</th>
+                                <th>Note</th>
+                                <th>Status</th>
+                                <th>Created at</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
 .select2-container .select2-selection--single .select2-selection__rendered {
     /* line-height: 60px !important; */
@@ -130,6 +162,7 @@
 </style>
 <!-- Select2 -->
 <script type="text/javascript">
+var base_url = "<?= base_url() ?>";
 $(document).ready(function() {
 
     loading_processing();
@@ -161,6 +194,7 @@ $(document).ready(function() {
                 data: data,
                 cache: false,
                 success: function(data) {
+                    $("#desc_service").html('');
                     $("#load-field").html('');
                     $("#load-field").html(data);
                 }
@@ -170,5 +204,6 @@ $(document).ready(function() {
         }
     });
     $('#MethodID').select2();
+
 });
 </script>

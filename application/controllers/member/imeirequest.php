@@ -287,6 +287,49 @@ class imeirequest extends FSD_Controller
 		$id = $this->session->userdata('MemberID');
 		echo $this->imeiorder_model->get_imei_data_select($id, $status);
 	}
+
+	public function listener_new()
+	{
+		$id = $this->session->userdata('MemberID');
+		$param = $this->input->post('param');
+
+		$start      =  $_REQUEST['start'];
+        $length     = $_REQUEST['length'];
+        $cari_data  = $_REQUEST['search']['value'];
+
+        $datas = $this->imeiorder_model->get_imei_data_select_new($id, $param, $start, $length, $cari_data);
+
+        $total = 9999999;
+        $array_data = array();
+        $no = $start + 1;
+        if (!empty($datas) && $datas != null) {
+
+            foreach ($datas as $d) {
+
+                $data["no"]          = $no;
+                $data["imei"]        = $d['IMEI'];
+                $data["service"] 	 = $d['Title'];
+                $data["code"]     	 = $d['Code'];
+                $data["note"]        = $d['Note'];
+                $data["status"]      = $d['Status'];
+                $data["created_at"]  = $d['CreatedDateTime'];
+
+                array_push($array_data, $data);
+                $no++;
+            }
+        }
+
+        $output = array(
+
+            "draw" => intval($_REQUEST['draw']),
+            "recordsTotal" => intval($total),
+            "recordsFiltered" => intval($total),
+            "data" => $array_data
+        );
+
+
+        echo json_encode($output);
+	}
 	
 	/* IMEI Validation */
 	public function duplicate_check($imeis, $method_id)

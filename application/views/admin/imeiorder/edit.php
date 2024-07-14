@@ -1,4 +1,4 @@
-<?php $status_options = ['Pending' => 'Pending', 'Issued' => 'Issued', 'Canceled' => 'Canceled', 'Verified' => 'Verified']; ?>
+<?php $status_options = ['Pending' => 'Pending', 'Issued' => 'Issued', 'Verified' => 'Verified']; ?>
 <div class="portlet">
     <div class="portlet-body form">
     	

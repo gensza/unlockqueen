@@ -153,6 +153,15 @@ class method_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result_array();
 	}
+
+	public function get_user_price_new($methodid)
+	{
+		$this->db->select('Price');
+		$this->db->from('gsm_methods');
+		$this->db->where('ID',$methodid);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 	
 	public function get_all_user_price($memberid)
 	{

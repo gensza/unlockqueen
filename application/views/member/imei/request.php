@@ -17,6 +17,10 @@
 <div class="row">
     <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
         <?= $this->session->flashdata('message') ?>
+        <?= form_error('IMEI', '<div class="alert alert-danger alert-dismissible fade show" role="alert">', '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'); ?>
+        <?= form_error('MethodID', '<div class="alert alert-danger alert-dismissible fade show" role="alert">', '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'); ?>
+        <?= form_error('Email', '<div class="alert alert-danger alert-dismissible fade show" role="alert">', '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'); ?>
+        <?= form_error('Note', '<div class="alert alert-danger alert-dismissible fade show" role="alert">', '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'); ?>
         <div class="card">
             <div class="card-header">
                 <div class="card-title">IMEI Code Request</div>

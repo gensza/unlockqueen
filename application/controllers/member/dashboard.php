@@ -64,12 +64,14 @@ class dashboard extends FSD_Controller
             foreach ($datas as $d) {
 
                 $data["no"]          = $no;
+                $data["detail"]      = "<a href='#' onclick='detailIMEI(\"".$d['ID']."\")'><i class='fa fa-eye'></i></a>";
                 $data["imei"]        = $d['IMEI'];
-                $data["description"] = $d['Title'];
-                $data["service"]     = $d['Code'];
-                $data["code"]        = $d['Note'];
+                // $data["description"] = $d['Title'];
+                // $data["price"]       = $d['Price'];
+                // $data["service"]     = $d['Code'];
+                // $data["code"]        = $d['Note'];
                 $data["status"]      = $d['Status'];
-                $data["created_at"]  = $d['CreatedDateTime'];
+                // $data["created_at"]  = $d['CreatedDateTime'];
 
                 array_push($array_data, $data);
                 $no++;
@@ -86,6 +88,16 @@ class dashboard extends FSD_Controller
 
 
         echo json_encode($output);
+	}
+
+	public function listener_new_detail()
+	{
+		$id = $this->session->userdata('MemberID');
+		$id_order = $this->input->post('id_order');
+
+		$output = $this->imeiorder_model->get_imei_data_new_detail($id, $id_order);
+
+		echo json_encode($output);
 	}
 	
 	public function fileorder()

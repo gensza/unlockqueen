@@ -27,6 +27,6 @@ class FSD_Controller extends CI_Controller
 	{  
 		$this->get_settings();
 		if( $this->session->userdata('is_member_logged_in') === FALSE)
-			redirect('login.html?return_url='.str_replace($this->config->item('url_suffix'), "", current_url()));
+			redirect('login?return_url='.str_replace($this->config->item('url_suffix'), "", current_url()));
 	}
 }

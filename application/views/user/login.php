@@ -48,14 +48,14 @@
             }
         </style>
 
-        <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="container px-4 py-5 px-md-5 text-lg-start my-5">
             <div class="row gx-lg-5 align-items-center mb-5">
                 <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
                     <h1 class="display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-                        <img src="<?= site_url() ?>img/indobypass_logo_new.png" height="200" alt="">
+                        <img src="<?= site_url() ?>img/indobypass_logo_new.png" width="100%" alt="">
                     </h1>
-                    <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-                        &emsp;iCloud MEID / GSM BYPASS WITH SIGNAL SERVICE ON
+                    <p class="opacity-70" style="color: hsl(218, 81%, 85%)">
+                        <marquee behavior="scroll" direction="right">iCloud MEID / GSM BYPASS WITH SIGNAL SERVICE ON</marquee>
                     </p>
                 </div>
 
@@ -67,11 +67,11 @@
 
                             <?php echo form_open('login', array('role' => 'form', 'method' => 'post')); ?>
                             <div class="form-group mt-3">
-                                <label for=""><?php echo $this->lang->line('login_lb_email') ?></label>
+                                <label for="" class="mb-1"><?php echo $this->lang->line('login_lb_email') ?></label>
                                 <input type="email" name="Email" value="<?php echo set_value('Email'); ?>" class="form-control" placeholder="<?php echo $this->lang->line('login_lb_email') ?>" required="">
                             </div>
                             <div class="form-group mt-3">
-                                <label for=""><?php echo $this->lang->line('login_lb_password') ?></label>
+                                <label for="" class="mb-1"><?php echo $this->lang->line('login_lb_password') ?></label>
                                 <input type="password" name="Password" class="form-control" placeholder="<?php echo $this->lang->line('login_lb_password') ?>" required="">
                             </div>
                             <div class="form-group mt-3 d-flex justify-content-between align-items-center">

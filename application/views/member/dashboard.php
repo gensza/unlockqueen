@@ -127,16 +127,18 @@
             <div class="card-body p-0" id="tableDataImei">
                 <div class="table-responsive p-5">
                     <!-- Projects table -->
-                    <table id="table_data_imei" class="table table-sm table-striped table-hover" style="width:100%">
+                    <table id="table_data_imei" class="table table-sm table-striped table-hover" style="width:100%;font-size:32px">
                         <thead>
                             <tr>
-                                <th>No</th>
+                                <th width="0%">No</th>
+                                <th width="0%">Detail</th>
                                 <th>IMEI</th>
-                                <th>Description</th>
-                                <th>Service</th>
-                                <th>Code</th>
+                                <!-- <th>Description</th> -->
+                                <!-- <th>Price</th> -->
+                                <!-- <th>Service</th> -->
+                                <!-- <th>Code</th> -->
                                 <th>Status</th>
-                                <th>Created at</th>
+                                <!-- <th>Created at</th> -->
                             </tr>
                         </thead>
                     </table>
@@ -178,6 +180,73 @@
                             </tr>
                         </thead>
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="detailImeiOrderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail IMEI Order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-action mb-4">
+                    <div class="collapse show">
+                        <table class="table table-hover">
+                            <tbody class="table-border-bottom-0">
+                                <tr>
+                                    <th style="width: 160px;padding-right: 0px !important;">TITLE </th>
+                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                    <td id="titleModal" style="padding-left: 0px !important;"></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 160px;padding-right: 0px !important;">IMEI </th>
+                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                    <td id="imeiModal" style="padding-left: 0px !important;"></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 160px;padding-right: 0px !important;">PRICE </th>
+                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                    <td id="priceModal" style="padding-left: 0px !important;"></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 160px;padding-right: 0px !important;">DELIVERY TIME </th>
+                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                    <td id="deliveryModal" style="padding-left: 0px !important;"></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 160px;padding-right: 0px !important;">STATUS </th>
+                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                    <td id="statusModal" style="padding-left: 0px !important;"></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 160px;padding-right: 0px !important;">CODE </th>
+                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                    <td id="codeModal" style="padding-left: 0px !important;"></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 160px;padding-right: 0px !important;">COMMENTS </th>
+                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                    <td id="commentsModal" style="padding-left: 0px !important;"></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 160px;padding-right: 0px !important;">NOTE </th>
+                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                    <td id="noteModal" style="padding-left: 0px !important;"></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 160px;padding-right: 0px !important;">CREATED AT </th>
+                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                    <td id="createdAtModal" style="padding-left: 0px !important;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

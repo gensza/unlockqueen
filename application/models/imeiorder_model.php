@@ -178,19 +178,30 @@ class imeiorder_model extends CI_Model
 
 	public function get_imei_data_new($id, $start, $length, $cari_data)
 	{
-		$this->db->select("$this->tbl_name.ID, $this->tbl_name.IMEI, $this->tbl_method.Title, $this->tbl_name.Code, $this->tbl_name.Note, $this->tbl_name.Status,  $this->tbl_name.CreatedDateTime", TRUE)
+		$this->db->select("$this->tbl_name.ID, $this->tbl_name.IMEI, $this->tbl_method.Title, $this->tbl_method.Price, $this->tbl_name.Code, $this->tbl_name.Note, $this->tbl_name.Status,  $this->tbl_name.CreatedDateTime", TRUE)
 				->from($this->tbl_name)
 				->join($this->tbl_method, "$this->tbl_name.MethodID=$this->tbl_method.ID", "inner")
 				->where("$this->tbl_name.MemberID",$id)
 				->like('IMEI', $cari_data, 'both')
-				->or_like('Title', $cari_data, 'both')
-				->or_like('Code', $cari_data, 'both')
-				->or_like('Note', $cari_data, 'both')
+				// ->or_like('Title', $cari_data, 'both')
+				// ->or_like('Code', $cari_data, 'both')
+				// ->or_like('Note', $cari_data, 'both')
 				->or_like("$this->tbl_name.Status", $cari_data, 'both')
 				->limit($length, $start)
 				->order_by("$this->tbl_name.ID", "desc");
 				
 				return $this->db->get()->result_array();					
+	}
+
+	public function get_imei_data_new_detail($id, $id_order)
+	{
+		$this->db->select("$this->tbl_name.ID, $this->tbl_name.IMEI, $this->tbl_method.Title, $this->tbl_method.Description, $this->tbl_method.Price, $this->tbl_method.DeliveryTime, $this->tbl_name.Code, $this->tbl_name.Note, $this->tbl_name.Status, $this->tbl_name.Email, $this->tbl_name.Comments, $this->tbl_name.CreatedDateTime", TRUE)
+				->from($this->tbl_name)
+				->join($this->tbl_method, "$this->tbl_name.MethodID=$this->tbl_method.ID", "inner")
+				->where("$this->tbl_name.MemberID",$id)
+				->where("$this->tbl_name.ID",$id_order);
+				
+				return $this->db->get()->row_array();					
 	}
 	
 	public function get_imei_data_select_new($id, $param, $start, $length, $cari_data)

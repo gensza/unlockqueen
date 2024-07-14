@@ -177,7 +177,8 @@ class imeirequest extends FSD_Controller
 		{
 			$member_id = $this->session->userdata('MemberID');
 			$credit = $this->credit_model->get_credit($member_id);
-			$pricing = $this->method_model->get_user_price($member_id, $method_id);
+			$pricing = $this->method_model->get_user_price_new($method_id);
+
 			$price = floatval($pricing[0]['Price']);
 			
 			#### Get IMEI CODES,Count Requests For Orders check Credit
@@ -232,6 +233,7 @@ class imeirequest extends FSD_Controller
 				$insert['Status'] = 'Pending';
 				$insert['UpdatedDateTime'] = date("Y-m-d H:i:s");
 				$insert['CreatedDateTime'] = date("Y-m-d H:i:s");
+
 				$insert_id = $this->imeiorder_model->insert($insert);
 				
 				#####Deduct Credits from available credits

@@ -85,14 +85,9 @@
                                 <p>IMEI Request</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#base">
-                                <i class="fas fa-th-list"></i>
-                                <p>IMEI History</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#sidebarLayouts">
+                        <li 
+                            <?= $this->uri->uri_string(2)=='member/serverrequest'?'class="nav-item active"':'class="nav-item"'; ?>>
+                            <a href="<?= site_url() ?>member/serverrequest">
                                 <i class="fas fa-server"></i>
                                 <p>Server Reuqest</p>
                             </a>

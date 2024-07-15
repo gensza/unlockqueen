@@ -47,8 +47,9 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-
                     </div>
+
+                    <div id="load-field"></div>
 
                     <div class="form-group">
                         <label class="control-label"><?php echo $this->lang->line('imei_fields_imei_sr') ?></label>
@@ -94,7 +95,8 @@
                 <div class="card-title">Description</div>
             </div>
             <div class="card-body pb-0">
-                <div id="load-field"><i class="text-muted" id="desc_service">Description for service selected!</i></div>
+                <div id="load-field-text"><i class="text-muted" id="desc_service">Description for service selected!</i>
+                </div>
                 <div class="separator-dashed"></div>
                 <div class="mb-5">
                     <p class="card-title mb-2">IMEI History</p>
@@ -201,6 +203,50 @@ $(document).ready(function() {
                     $("#desc_service").html('');
                     $("#load-field").html('');
                     $("#load-field").html(data);
+                }
+            });
+
+            $.ajax({
+                type: "post",
+                url: "<?php echo site_url('member/imeirequest/formfieldstext'); ?>",
+                dataType: "json",
+                data: data,
+                cache: false,
+                success: function(data) {
+                    $("#load-field-text").html('');
+                    var html = '';
+                    if (data.price) {
+                        // set html if data exist
+                        html +=
+                            '<div class="form-group">' +
+                            '<label class="col-sm-3 control-label"><?php echo $this->lang->line('imei_fields_price') ?></label>' +
+                            '<div class="col-sm-9 text">' + data.price +
+                            ' <?php echo $this->lang->line('header_credits') ?></div>' +
+                            '</div>'
+                    }
+
+                    if (data.delivery_time) {
+                        // set html if data exist
+                        html +=
+                            '<div class="form-group">' +
+                            '<label class="col-sm-3 control-label"><?php echo $this->lang->line('imei_fields_delivery_time') ?></label>' +
+                            '<div class="col-sm-9 text">' + data.delivery_time +
+                            '</div>' +
+                            '</div>'
+                    }
+
+                    if (data.description) {
+                        // set html if data exist
+                        html +=
+                            '<div class="form-group">' +
+                            '<label class="col-sm-3 control-label"><?php echo $this->lang->line('imei_fields_description') ?></label>' +
+                            '<div class="col-sm-9 text">' + data.description +
+                            '</div>' +
+                            '</div>'
+                    }
+
+                    $("#load-field-text").html(html);
+
                 }
             });
         } else {

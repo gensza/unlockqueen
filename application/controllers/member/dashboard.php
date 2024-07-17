@@ -39,6 +39,18 @@ class dashboard extends FSD_Controller
 		
 		$this->load->view('mastertemplate', $data);
 	}
+
+	public function credits()
+	{
+		$data = array();
+		$data['Title'] = "Credits";
+		$data['template'] = "member/credits";
+
+		$data['content'] = "member/credits";
+		$data['content_js'] = "dashboard/credit.js";
+		
+		$this->load->view('mastertemplate', $data);
+	}
 	
 	public function listener()
 	{

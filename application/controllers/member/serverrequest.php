@@ -31,7 +31,18 @@ class serverrequest extends FSD_Controller
 
 		$this->load->view('mastertemplate', $data);
 	}
-		
+	
+	public function history()
+	{
+		$data = array();
+		$data['Title'] = "Server Request";
+		$data['template'] = "member/serverservice/request";
+
+		$data['content'] = "member/serverservice/requesthistory";
+		$data['content_js'] = "server_service/serverService.js";
+
+		$this->load->view('mastertemplate', $data);
+	}
 	
 	###### Place IMER Request Order and deduct charges ################################
 	

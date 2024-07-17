@@ -89,7 +89,28 @@
                             <?= $this->uri->uri_string(2)=='member/serverrequest'?'class="nav-item active"':'class="nav-item"'; ?>>
                             <a href="<?= site_url() ?>member/serverrequest">
                                 <i class="fas fa-server"></i>
-                                <p>Server Reuqest</p>
+                                <p>Server Request</p>
+                            </a>
+                        </li>
+                        <li 
+                            <?= $this->uri->uri_string(2)=='member/imeirequest/history'?'class="nav-item active"':'class="nav-item"'; ?>>
+                            <a href="<?= site_url() ?>member/imeirequest/history">
+                                <i class="fas fas fa-tablet-alt"></i>
+                                <p>IMEI Order History</p>
+                            </a>
+                        </li>
+                        <li 
+                            <?= $this->uri->uri_string(2)=='member/serverrequest/history'?'class="nav-item active"':'class="nav-item"'; ?>>
+                            <a href="<?= site_url() ?>member/serverrequest/history">
+                                <i class="fas fa-laptop-code"></i>
+                                <p>Server Order History</p>
+                            </a>
+                        </li>
+                        <li 
+                            <?= $this->uri->uri_string(2)=='member/dashboard/credits'?'class="nav-item active"':'class="nav-item"'; ?>>
+                            <a href="<?= site_url() ?>member/dashboard/credits">
+                                <i class="fas fa-credit-card"></i>
+                                <p>Credits</p>
                             </a>
                         </li>
                     </ul>

@@ -1,18 +1,31 @@
+<style>
+    @media screen and (max-width: 767px) {
+    .main-panel .page-header .breadcrumbs {
+        margin-left: 0;
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-bottom: 0;
+        border-left: 0;
+    }
+}
+</style>
 <div class="page-header">
-    <h3 class="fw-bold mb-3">Server Request</h3>
-    <ul class="breadcrumbs mb-3">
-        <li class="nav-home">
-            <a href="#">
-                <i class="icon-home"></i>
-            </a>
-        </li>
-        <li class="separator">
-            <i class="icon-arrow-right"></i>
-        </li>
-        <li class="nav-item">
-            <a href="#">Server Request</a>
-        </li>
-    </ul>
+    <div class="d-flex justify-content-between">
+        <h3 class="fw-bold">Server Request</h3>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Server Request</a>
+            </li>
+        </ul>
+    </div>
 </div>
 <div class="row">
     <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">

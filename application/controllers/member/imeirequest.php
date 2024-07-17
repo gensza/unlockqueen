@@ -325,10 +325,12 @@ class imeirequest extends FSD_Controller
 	public function history()
 	{
 		$data = array();
-		$id = $this->session->userdata('MemberID');
 		$data['Title'] = "IMEI Service History";
-		$data['template'] = "member/imei/history";
-		$data['credit'] = $this->credit_model->get_credit($id);
+		$data['template'] = "member/imei/requesthistory";
+
+		$data['content'] = "member/imei/requesthistory";
+		$data['content_js'] = "imei_request/imeiRequest.js";
+
 		$this->load->view('mastertemplate', $data);
 	}
 	

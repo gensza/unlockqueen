@@ -91,7 +91,7 @@
                         </a>
                     </div>
                     <div class="view-profile">
-                        <a href="#" class="btn btn-secondary w-100">View Full Profile</a>
+                        <a href="<?= site_url('member/dashboard/profile') ?>" class="btn btn-secondary w-100">View Full Profile</a>
                     </div>
                 </div>
             </div>

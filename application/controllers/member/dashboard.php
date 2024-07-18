@@ -231,6 +231,10 @@ class dashboard extends FSD_Controller
 		$data['Title'] = $this->lang->line('my_account_heading');
 		$data['template'] = "member/profile";
 		$data['credit'] = $this->credit_model->get_credit($id);
+
+		$data['content'] = "member/profile";
+		$data['content_js'] = "dashboard/profile.js";
+
 		$this->load->view('mastertemplate', $data);
 	}
 	
@@ -244,7 +248,7 @@ class dashboard extends FSD_Controller
 		if ($this->form_validation->run() == FALSE)
 		{
 			$data = $this->input->post(NULL,TRUE);
-			$this->session->set_flashdata("fail", $this->lang->line('error_field_required'));
+			$this->session->set_flashdata("message", '<div class="alert alert-danger alert-dismissible fade show" role="alert" role="danger"> '.$this->lang->line('error_field_required').'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 			redirect(site_url('member/dashboard/profile'));
 		}
 		else {
@@ -262,7 +266,7 @@ class dashboard extends FSD_Controller
 					}
 					else
 					{
-						$this->session->set_flashdata("fail", $this->lang->line('error_password_not_match'));
+						$this->session->set_flashdata("message", '<div class="alert alert-danger alert-dismissible fade show" role="alert" role="danger"> '.$this->lang->line('error_password_not_match').'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 						redirect(site_url('member/dashboard/profile'));
 					}
 				}
@@ -270,10 +274,10 @@ class dashboard extends FSD_Controller
 				unset($data['NewPassword']);
 				unset($data['ConfirmPassword']);
 				$this->member_model->update($data, $data['ID']);
-				$this->session->set_flashdata("success", $this->lang->line('error_update_successfully'));
+				$this->session->set_flashdata("message", '<div class="alert alert-success alert-dismissible fade show" role="alert" role="danger"> '.$this->lang->line('error_update_successfully').'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 				redirect(site_url('member/dashboard/profile'));
 			}
-			$this->session->set_flashdata("fail",$this->lang->line('error_wrong_password'));
+			$this->session->set_flashdata("message",'<div class="alert alert-danger alert-dismissible fade show" role="alert" role="danger"> '.$this->lang->line('error_wrong_password').'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 			redirect(site_url('member/dashboard/profile'));
 		}
 	}

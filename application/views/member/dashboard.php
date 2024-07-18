@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="ms-md-auto">
-        <a href="#" class="btn btn-primary btn-round"> + Add Fund</a>
+        <a href="<?= site_url('member/dashboard/addfund') ?>" class="btn btn-primary btn-round"> + Add Fund</a>
     </div>
 </div>
 <div class="row">
@@ -91,7 +91,8 @@
                         </a>
                     </div>
                     <div class="view-profile">
-                        <a href="<?= site_url('member/dashboard/profile') ?>" class="btn btn-secondary w-100">View Full Profile</a>
+                        <a href="<?= site_url('member/dashboard/profile') ?>" class="btn btn-secondary w-100">View Full
+                            Profile</a>
                     </div>
                 </div>
             </div>

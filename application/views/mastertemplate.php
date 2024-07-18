@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
+    <title>Kaiadmin | <?= $Title ?></title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="shortcut icon" href="<?= base_url() ?>img/indobypass_icon_new.png">
 
@@ -85,28 +85,28 @@
                                 <p>IMEI Request</p>
                             </a>
                         </li>
-                        <li 
+                        <li
                             <?= $this->uri->uri_string(2)=='member/serverrequest'?'class="nav-item active"':'class="nav-item"'; ?>>
                             <a href="<?= site_url() ?>member/serverrequest">
                                 <i class="fas fa-server"></i>
                                 <p>Server Request</p>
                             </a>
                         </li>
-                        <li 
+                        <li
                             <?= $this->uri->uri_string(2)=='member/imeirequest/history'?'class="nav-item active"':'class="nav-item"'; ?>>
                             <a href="<?= site_url() ?>member/imeirequest/history">
                                 <i class="fas fas fa-tablet-alt"></i>
                                 <p>IMEI Order History</p>
                             </a>
                         </li>
-                        <li 
+                        <li
                             <?= $this->uri->uri_string(2)=='member/serverrequest/history'?'class="nav-item active"':'class="nav-item"'; ?>>
                             <a href="<?= site_url() ?>member/serverrequest/history">
                                 <i class="fas fa-laptop-code"></i>
                                 <p>Server Order History</p>
                             </a>
                         </li>
-                        <li 
+                        <li
                             <?= $this->uri->uri_string(2)=='member/dashboard/credits'?'class="nav-item active"':'class="nav-item"'; ?>>
                             <a href="<?= site_url() ?>member/dashboard/credits">
                                 <i class="fas fa-credit-card"></i>
@@ -262,7 +262,8 @@
                                         </li>
                                         <li>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="<?= site_url('member/dashboard/profile') ?>">My Profile</a>
+                                            <a class="dropdown-item"
+                                                href="<?= site_url('member/dashboard/profile') ?>">My Profile</a>
                                             <a class="dropdown-item" href="#">My Balance</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="<?= site_url('logout') ?>">Logout</a>
@@ -291,30 +292,22 @@
                     <nav class="pull-left">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="http://www.themekita.com">
-                                    ThemeKita
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> Help </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> Licenses </a>
+                                <div class="nav-link">
+                                    <i class="fab fa-whatsapp"></i> +94-0787289764
+                                </div>
                             </li>
                         </ul>
                     </nav>
                     <div class="copyright">
-                        2024, made with <i class="fa fa-heart heart text-danger"></i> by
-                        <a href="http://www.themekita.com">ThemeKita</a>
+                        © 2024 Copyright reserved worldwideunlockstore.com
                     </div>
                     <div>
-                        Distributed by
-                        <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+                        <i class="fab fa-telegram-plane"></i> <a
+                            href="https://t.me/joinchat/TXMvEoIyndr9lB-T">https://t.me/joinchat/TXMvEoIyndr9lB-T</a>
                     </div>
                 </div>
             </footer>
         </div>
-
     </div>
     <!--   Core JS Files   -->
     <script src="<?= site_url() ?>assets/assets_members/js/core/popper.min.js"></script>

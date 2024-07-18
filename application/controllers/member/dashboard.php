@@ -220,6 +220,10 @@ class dashboard extends FSD_Controller
 		$data['template'] = "member/addcredit";
 		$data['credit'] = $this->credit_model->get_credit($id);
 		$data['paypal_settings'] = $this->payment_model->get_where(array('ID'=>1));
+
+		$data['content'] = "member/addcredit";
+		$data['content_js'] = "dashboard/addcredit.js";
+		
 		$this->load->view('mastertemplate', $data);	
 	}
 	

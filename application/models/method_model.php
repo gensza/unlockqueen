@@ -87,7 +87,28 @@ class method_model extends CI_Model
             $data[$network_id]['methods'][] = $method;
         }
         return $data;
-    }         
+    }      
+	
+	public function method_with_networks_list($cari_data = NULL) 
+	{
+        $data = array();
+        $query = $this->db->get($this->tbl_networks);
+        foreach ($query->result_array() as $network) 
+        {
+            $network_id = $network['ID'];
+            $data[$network_id]['Title'] = $network['Title'];
+        }
+                
+		$this->db->like('Title', $cari_data);
+		$this->db->where('Status', 'Enabled');
+		$query = $this->db->get($this->tbl_name);
+        foreach ($query->result_array() as $method) 
+        {
+            $network_id = $method['NetworkID'];
+            $data[$network_id]['methods'][] = $method;
+        }
+        return $data;
+    } 
 	
 	public function get_api_credentials($id) 
 	{

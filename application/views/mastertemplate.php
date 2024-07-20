@@ -113,6 +113,30 @@
                                 <p>Credits</p>
                             </a>
                         </li>
+                        <li
+                            <?= $this->uri->uri_string(2)=='member/imeirequest/listservices' || $this->uri->uri_string(2)=='member/serverrequest/listservices'?'class="nav-item active submenu"':'class="nav-item submenu"'; ?>>
+                            <a data-bs-toggle="collapse" href="#base">
+                                <i class="fas fa-layer-group"></i>
+                                <p>All Services</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse" id="base">
+                                <ul class="nav nav-collapse">
+                                    <li
+                                        <?= $this->uri->uri_string(2)=='member/imeirequest/listservices'?'class="active"':''; ?>>
+                                        <a href="<?= site_url() ?>member/imeirequest/listservices">
+                                            <span class="sub-item">IMEI Services</span>
+                                        </a>
+                                    </li>
+                                    <li
+                                        <?= $this->uri->uri_string(2)=='member/serverrequest/listservices'?'class="active"':''; ?>>
+                                        <a href="../components/buttons.html">
+                                            <span class="sub-item">Server Services</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>

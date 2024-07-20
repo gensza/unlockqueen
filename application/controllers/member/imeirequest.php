@@ -36,6 +36,74 @@ class imeirequest extends FSD_Controller
 
 		$this->load->view('mastertemplate', $data);
 	}
+
+	public function listservices()
+	{
+		$data = array();
+		$data['Title'] = "Imei Request List";
+		$data['template'] = "member/imei/requestlist";
+
+		$data['content'] = "member/imei/requestlist";
+		$data['content_js'] = "imei_request/imeiRequestList.js";
+
+		$this->load->view('mastertemplate', $data);
+	}
+
+	public function listservicesdata()
+	{
+
+		$start      =  $_REQUEST['start'];
+        $length     = $_REQUEST['length'];
+        $cari_data  = $_REQUEST['search']['value'];
+
+		$datas = $this->method_model->method_with_networks_list($cari_data);
+
+        $total = 9999999;
+        $array_data = array();
+        $no = $start + 1;
+
+		$flattenedData = [];
+		foreach ($datas as $network) {
+			if (!empty($network['methods'])) {
+
+				$flattenedData[] = [
+					'title' => '<p style="padding:0px;margin:0px;background:lightgray;"><b>'.$network['Title'].'</b></p>',
+					'DeliveryTime' => '<p style="padding:0px;margin:0px;background:lightgray">&emsp;</p>',
+					'methodPrice' => '<p style="padding:0px;margin:0px;background:lightgray">&emsp;</p>'
+				];
+
+				foreach ($network['methods'] as $method) {
+					$flattenedData[] = [
+						'title' => $method['Title'],
+						'DeliveryTime' => $method['DeliveryTime'],
+						'methodPrice' => $method['Price']
+					];
+				}
+			}
+		}
+
+		foreach ($flattenedData as $method) {
+
+			$data['title'] = $method['title'];
+			$data['delivery_time'] = $method['DeliveryTime'];
+			$data['price'] = $method['methodPrice'];
+
+			array_push($array_data, $data);
+		}
+
+		$no++;
+
+        $output = array(
+
+            "draw" => intval($_REQUEST['draw']),
+            "recordsTotal" => intval($total),
+            "recordsFiltered" => intval($total),
+            "data" => $array_data
+        );
+
+
+        echo json_encode($output);
+	}
 	
 	######################## Verify Imei Request FOrm display #########################
 	

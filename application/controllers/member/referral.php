@@ -22,6 +22,14 @@ class Referral extends FSD_Controller
 		$data['Title'] = "Referral Commission";
 		$data['template'] = "member/referral";
 		$data['credit'] = $this->credit_model->get_credit($id);
+
+		$settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
+		
 		$this->load->view('mastertemplate', $data);
 	}
 }	

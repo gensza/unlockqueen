@@ -56,6 +56,13 @@ class dashboard extends FSD_Controller
 		$data['content'] = "member/credits";
 		$data['content_js'] = "dashboard/credit.js";
 		
+		$settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
+
 		$this->load->view('mastertemplate', $data);
 	}
 	
@@ -231,6 +238,13 @@ class dashboard extends FSD_Controller
 		$data['content'] = "member/addcredit";
 		$data['content_js'] = "dashboard/addcredit.js";
 		
+		$settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
+
 		$this->load->view('mastertemplate', $data);	
 	}
 	
@@ -246,6 +260,13 @@ class dashboard extends FSD_Controller
 		$data['content'] = "member/profile";
 		$data['content_js'] = "dashboard/profile.js";
 
+		$settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
+		
 		$this->load->view('mastertemplate', $data);
 	}
 	

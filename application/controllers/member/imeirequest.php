@@ -31,6 +31,13 @@ class imeirequest extends FSD_Controller
 		$id = $this->session->userdata('MemberID');
 		$data['credit'] = $this->credit_model->get_credit($id);
 
+		$settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
+
 		$data['content'] = "member/imei/request";
 		$data['content_js'] = "imei_request/imeiRequest.js";
 
@@ -45,6 +52,13 @@ class imeirequest extends FSD_Controller
 
 		$data['content'] = "member/imei/requestlist";
 		$data['content_js'] = "imei_request/imeiRequestList.js";
+
+		$settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
 
 		$this->load->view('mastertemplate', $data);
 	}
@@ -115,6 +129,14 @@ class imeirequest extends FSD_Controller
 		$data['template'] = "member/imei/verifyrequest";
 		$id = $this->session->userdata('MemberID');
 		$data['credit'] = $this->credit_model->get_credit($id);
+
+		$settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
+
 		$this->load->view('mastertemplate', $data);
 	}
 	
@@ -398,6 +420,13 @@ class imeirequest extends FSD_Controller
 
 		$data['content'] = "member/imei/requesthistory";
 		$data['content_js'] = "imei_request/imeiRequest.js";
+
+		$settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
 
 		$this->load->view('mastertemplate', $data);
 	}

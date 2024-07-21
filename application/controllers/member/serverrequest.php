@@ -31,6 +31,19 @@ class serverrequest extends FSD_Controller
 
 		$this->load->view('mastertemplate', $data);
 	}
+
+	public function listservices()
+	{
+		$data = array();
+		$id = $this->session->userdata('MemberID');
+		$data['Title'] = "Server Request List";
+		$data['template'] = "member/serverservice/requestlist";
+
+		$data['content'] = "member/serverservice/requestlist";
+		$data['content_js'] = "server_service/serverServiceList.js";
+
+		$this->load->view('mastertemplate', $data);
+	}
 	
 	public function history()
 	{
@@ -42,6 +55,62 @@ class serverrequest extends FSD_Controller
 		$data['content_js'] = "server_service/serverService.js";
 
 		$this->load->view('mastertemplate', $data);
+	}
+
+	public function listservicesdata()
+	{
+
+		$start      =  $_REQUEST['start'];
+        $length     = $_REQUEST['length'];
+        $cari_data  = $_REQUEST['search']['value'];
+
+		$datas = $this->serverbox_model->service_with_boxes_new($cari_data);
+
+        $total = 9999999;
+        $array_data = array();
+        $no = $start + 1;
+
+		$flattenedData = [];
+		foreach ($datas as $network) {
+			if (!empty($network['services'])) {
+
+				$flattenedData[] = [
+					'title' => '<p style="padding:16px;padding-left:10px;margin:0px;background:lightgray;white-space:nowrap"><b>'.$network['Title'].'</b></p>',
+					'DeliveryTime' => '<p style="padding:16px;margin:0px;background:lightgray">&emsp;</p>',
+					'methodPrice' => '<p style="padding:16px;margin:0px;background:lightgray">&emsp;</p>'
+				];
+
+				foreach ($network['services'] as $method) {
+					$flattenedData[] = [
+						'title' => '<p style="padding-left:25px;padding-top:10px;">'.$method['Title'].'</p>',
+						'DeliveryTime' => '<p style="padding-left:25px;padding-top:10px;">'.$method['DeliveryTime'].'</p>',
+						'methodPrice' => '<p style="padding-left:25px;padding-top:10px;">'.$method['Price'].'</p>'
+					];
+				}
+			}
+		}
+
+		foreach ($flattenedData as $method) {
+
+			$data['title'] = $method['title'];
+			$data['delivery_time'] = $method['DeliveryTime'];
+			$data['price'] = $method['methodPrice'];
+
+			array_push($array_data, $data);
+		}
+
+		$no++;
+
+        $output = array(
+
+            "draw" => intval($_REQUEST['draw']),
+            "recordsTotal" => intval($total),
+            "recordsFiltered" => intval($total),
+            "data" => $array_data
+        );
+
+
+        echo json_encode($output);
 	}
 	
 	###### Place IMER Request Order and deduct charges ################################

@@ -25,7 +25,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 </style>
 <div class="page-header">
     <div class="d-flex justify-content-between">
-        <h3 class="fw-bold">IMEI Services</h3>
+        <h3 class="fw-bold">Server Services</h3>
         <ul class="breadcrumbs">
             <li class="nav-home">
                 <a href="#">
@@ -42,7 +42,7 @@ div.dataTables_wrapper div.dataTables_filter input {
                 <i class="icon-arrow-right"></i>
             </li>
             <li class="nav-item">
-                <a href="#">IMEI Services</a>
+                <a href="#">Server Services</a>
             </li>
         </ul>
     </div>
@@ -51,7 +51,7 @@ div.dataTables_wrapper div.dataTables_filter input {
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">IMEI Services List</div>
+                <div class="card-title">Server Services List</div>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -88,7 +88,7 @@ $(document).ready(function() {
     new DataTable('#table_data', {
 
         ajax: {
-            url: base_url + "member/imeirequest/listservicesdata",
+            url: base_url + "member/serverrequest/listservicesdata",
             type: 'POST',
             "data": {}
         },

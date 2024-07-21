@@ -130,7 +130,7 @@
                                     </li>
                                     <li
                                         <?= $this->uri->uri_string(2)=='member/serverrequest/listservices'?'class="active"':''; ?>>
-                                        <a href="../components/buttons.html">
+                                        <a href="<?= site_url() ?>member/serverrequest/listservices">
                                             <span class="sub-item">Server Services</span>
                                         </a>
                                     </li>

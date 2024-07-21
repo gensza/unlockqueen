@@ -45,20 +45,20 @@ class User extends FSD_Controller
 						$this->fsd->email_template($post, $from_email, $from_name, $to_email, $subject, $message );
 						$this->fsd->sent_email($from_email, $from_name,$to_email, $subject, $message );
 						
-						$this->session->set_flashdata("success", $this->lang->line('error_success_email'));
+						$this->session->set_flashdata("message", '<div class="alert alert-success alert-dismissible fade show" role="alert" role="danger"> '.$this->lang->line('error_success_email').'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 						redirect('forgot_password');						
 					}								   	
 				}
 				//record not found
-				$this->session->set_flashdata("fail", $this->lang->line('error_invalid_email'));
+				$this->session->set_flashdata("message", '<div class="alert alert-danger alert-dismissible fade show" role="alert" role="danger"> '.$this->lang->line('error_invalid_email').'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 				redirect('forgot_password');	 		
 			}
 		}
 		$data = array();
 		$data["title"] = $this->lang->line('forgot_password_heading');
 		$data["heading"] = $this->lang->line('forgot_password_heading');
-		$data['master_template'] = "user/forgetpassword";
-		$this->load->view("user/master_template", $data);
+		// $data['master_template'] = "user/forgetpassword";
+		$this->load->view("user/forgetpassword", $data);
 	}
 	
 	public function set_password($token)
@@ -214,7 +214,7 @@ class User extends FSD_Controller
 					$this->fsd->email_template($post, $from_email, $from_name, $to_email, $subject, $message );
 					$this->fsd->sent_email($from_email, $from_name,$to_email, $subject, $message );
 				}
-				$this->session->set_flashdata("success", $this->lang->line('error_verification_email'));
+				$this->session->set_flashdata("message", '<div class="alert alert-success alert-dismissible fade show" role="alert" role="danger"> '.$this->lang->line('error_verification_email').'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 				redirect('login');									
 			}
 		}
@@ -228,8 +228,8 @@ class User extends FSD_Controller
 		$data = array();
 		$data["title"] = $this->lang->line('register_heading');
 		$data["heading"] = $this->lang->line('register_heading');
-		$data['master_template'] = "user/register";
-		$this->load->view("user/master_template",$data);
+		// $data['master_template'] = "user/register";
+		$this->load->view("user/register",$data);
 	}
 
 	public function logout()

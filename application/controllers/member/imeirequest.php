@@ -67,16 +67,16 @@ class imeirequest extends FSD_Controller
 			if (!empty($network['methods'])) {
 
 				$flattenedData[] = [
-					'title' => '<p style="padding:0px;margin:0px;background:lightgray;"><b>'.$network['Title'].'</b></p>',
-					'DeliveryTime' => '<p style="padding:0px;margin:0px;background:lightgray">&emsp;</p>',
-					'methodPrice' => '<p style="padding:0px;margin:0px;background:lightgray">&emsp;</p>'
+					'title' => '<p style="padding:16px;padding-left:10px;margin:0px;background:lightgray;white-space:nowrap"><b>'.$network['Title'].'</b></p>',
+					'DeliveryTime' => '<p style="padding:16px;margin:0px;background:lightgray">&emsp;</p>',
+					'methodPrice' => '<p style="padding:16px;margin:0px;background:lightgray">&emsp;</p>'
 				];
 
 				foreach ($network['methods'] as $method) {
 					$flattenedData[] = [
-						'title' => $method['Title'],
-						'DeliveryTime' => $method['DeliveryTime'],
-						'methodPrice' => $method['Price']
+						'title' => '<p style="padding-left:25px;padding-top:10px;">'.$method['Title'].'</p>',
+						'DeliveryTime' => '<p style="padding-left:25px;padding-top:10px;">'.$method['DeliveryTime'].'</p>',
+						'methodPrice' => '<p style="padding-left:25px;padding-top:10px;">'.$method['Price'].'</p>'
 					];
 				}
 			}

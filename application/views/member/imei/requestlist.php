@@ -9,6 +9,12 @@
     }
 }
 
+div.dataTables_wrapper div.dataTables_filter input {
+    display: inline-block;
+    width: 400px;
+    padding: 10px;
+}
+
 .dataTables_wrapper .dataTables_filter {
     float: left;
 }

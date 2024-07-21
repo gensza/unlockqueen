@@ -34,6 +34,13 @@ class dashboard extends FSD_Controller
 		$data['template'] = "member/dashboard";
 		$data['credit'] = $this->credit_model->get_credit($id);
 
+		$settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
+
 		$data['content'] = "member/dashboard";
 		$data['content_js'] = "dashboard/dashboard.js";
 		

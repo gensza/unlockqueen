@@ -15,6 +15,9 @@
                 <li>
                     <a href="#tab_3" data-toggle="tab">Crypto Currency</a>
                 </li>
+                <li>
+                    <a href="#tab_4" data-toggle="tab">Notification</a>
+                </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_0">
@@ -183,6 +186,37 @@
                                         <label class="col-md-3 control-label">Details</label>
                                         <div class="col-md-4">
                                             <textarea class="form-control" rows="5" cols="10" name="app_cryptocurrency"><?php echo set_value('app_cryptocurrency', $data['app_cryptocurrency']) ?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <button type="submit" class="btn btn-info">Submit</button>
+                                            <button type="button" class="btn btn-default">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php echo form_close(); ?>  
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_4">
+                    <div class="portlet">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-reorder"></i>Push Notification
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            <!-- BEGIN FORM-->
+                            <?php echo form_open("admin/setting/update", array('class' => "form-horizontal")); ?>
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Text</label>
+                                        <div class="col-md-4">
+                                            <textarea class="form-control" rows="5" cols="10" name="push_notification"><?php echo set_value('push_notification', $data['push_notification']) ?></textarea>
                                         </div>
                                     </div>
                                 </div>

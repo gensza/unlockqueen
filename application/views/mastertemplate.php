@@ -38,13 +38,13 @@
 </head>
 
 <body>
-    <div class="wrapper sidebar_minimize">
+    <div class="wrapper sidebar_minimize sidebar_minimize_hover">
         <!-- Sidebar -->
         <div class="sidebar sidebar-style-2" data-background-color="dark">
             <div class="sidebar-logo">
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
-                    <a href="<?= site_url() ?>member/dashboard" class="logo">
+                    <a href="#" class="logo">
                         <img src="<?= site_url() ?>img/indobypass_logo_new.png" alt="navbar brand" class="navbar-brand"
                             height="80" />
                     </a>
@@ -115,12 +115,12 @@
                         </li>
                         <li
                             <?= $this->uri->uri_string(2)=='member/imeirequest/listservices' || $this->uri->uri_string(2)=='member/serverrequest/listservices'?'class="nav-item active submenu"':'class="nav-item submenu"'; ?>>
-                            <a data-bs-toggle="collapse" href="#base">
+                            <a data-bs-toggle="collapse" href="#base" <?= $this->uri->uri_string(2)=='member/imeirequest/listservices' || $this->uri->uri_string(2)=='member/serverrequest/listservices'?'aria-expanded="true"':'aria-expanded="false" class="collapsed"'; ?>>
                                 <i class="fas fa-layer-group"></i>
                                 <p>All Services</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="base">
+                            <div id="base" <?= $this->uri->uri_string(2)=='member/imeirequest/listservices' || $this->uri->uri_string(2)=='member/serverrequest/listservices'?'class="collapse show"':'class="collapse"'; ?>>
                                 <ul class="nav nav-collapse">
                                     <li
                                         <?= $this->uri->uri_string(2)=='member/imeirequest/listservices'?'class="active"':''; ?>>

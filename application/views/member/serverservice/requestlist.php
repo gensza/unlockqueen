@@ -11,7 +11,7 @@
 
 div.dataTables_wrapper div.dataTables_filter input {
     display: inline-block;
-    width: 400px;
+    width: 340px;
     padding: 10px;
 }
 
@@ -61,9 +61,9 @@ div.dataTables_wrapper div.dataTables_filter input {
                             style="width:100%;font-size:32px">
                             <thead>
                                 <tr>
-                                    <th>Service</th>
-                                    <th>DeliveryTime</th>
-                                    <th>Price</th>
+                                    <th style="width: 100%;">Service</th>
+                                    <th style="width: 0%;">Delivery Time</th>
+                                    <th style="width: 0%;">Price</th>
                                 </tr>
                             </thead>
                         </table>

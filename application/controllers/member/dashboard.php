@@ -33,6 +33,8 @@ class dashboard extends FSD_Controller
 		$data['Title'] = "Dashboard";
 		$data['template'] = "member/dashboard";
 		$data['credit'] = $this->credit_model->get_credit($id);
+		$data['total_credit'] = $this->credit_model->get_total_credit($id);
+		$data['total_order'] = $this->credit_model->get_total_order($id);
 
 		$settings = $this->setting_model->get_all();
 		foreach ($settings as $s)
@@ -89,14 +91,31 @@ class dashboard extends FSD_Controller
 
             foreach ($datas as $d) {
 
+				$status = ($d['Status'] == "Issued") ? "Success" : $d['Status'];
+
+				switch ($status) {
+					case "Pending":
+						$status = "<span class='badge bg-warning text-white'>Pending</span>";
+						break;
+					case "Success":
+						$status = "<span class='badge bg-success'>Success</span>";
+						break;
+					case "Canceled":
+						$status = "<span class='badge bg-danger'>Rejected</span>";
+						break;
+					default:
+						$status = "<span class='bg bg-secondary'>Unknown</span>";
+						break;
+				}
+
                 $data["no"]          = $no;
                 $data["detail"]      = "<a href='#' onclick='detailIMEI(\"".$d['ID']."\")'><i class='fa fa-eye'></i></a>";
                 $data["imei"]        = $d['IMEI'];
                 // $data["description"] = $d['Title'];
                 // $data["price"]       = $d['Price'];
-                // $data["service"]     = $d['Code'];
+                $data["service"]     = $d['Title'];
                 // $data["code"]        = $d['Note'];
-                $data["status"]      = $d['Status'];
+                $data["status"]      = $status;
                 // $data["created_at"]  = $d['CreatedDateTime'];
 
                 array_push($array_data, $data);

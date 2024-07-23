@@ -50,7 +50,7 @@ function detailIMEI(id_order) {
             $("#priceModal").html(res.Price);
             $("#deliveryModal").html(res.DeliveryTime);
             $("#statusModal").html(res.Status);
-            $("#codeModal").html(res.Code);
+            // $("#codeModal").html(res.Code);
             $("#commentsModal").html(res.Comments);
             $("#noteModal").html(res.Note);
             $("#createdAtModal").html(res.CreatedDateTime);

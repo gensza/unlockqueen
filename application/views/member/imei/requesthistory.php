@@ -1,5 +1,5 @@
 <style>
-    @media screen and (max-width: 767px) {
+@media screen and (max-width: 767px) {
     .main-panel .page-header .breadcrumbs {
         margin-left: 0;
         padding-top: 5px;
@@ -7,6 +7,32 @@
         padding-bottom: 0;
         border-left: 0;
     }
+}
+
+.table>thead>tr>th{
+    padding: 5px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.table>tbody>tr>td{
+    padding: 5px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+input.paginate_input {
+    padding: 0.422rem 0.875rem;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: 1px solid #dbdade;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    width: 30%;
 }
 </style>
 <div class="page-header">
@@ -40,12 +66,12 @@
                         <table id="table_data_imei" class="table table-sm table-striped table-hover" style="width:100%;font-size:32px">
                             <thead>
                                 <tr>
-                                    <th width="0%">No</th>
-                                    <th width="0%">Detail</th>
+                                    <th>No</th>
+                                    <th>#</th>
                                     <th>IMEI</th>
                                     <!-- <th>Description</th> -->
                                     <!-- <th>Price</th> -->
-                                    <!-- <th>Service</th> -->
+                                    <th>Service</th>
                                     <!-- <th>Code</th> -->
                                     <th>Status</th>
                                     <!-- <th>Created at</th> -->
@@ -70,55 +96,57 @@
             <div class="modal-body">
                 <div class="card card-action mb-4">
                     <div class="collapse show">
-                        <table class="table table-hover">
-                            <tbody class="table-border-bottom-0">
-                                <tr>
-                                    <th style="width: 160px;padding-right: 0px !important;">TITLE </th>
-                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
-                                    <td id="titleModal" style="padding-left: 0px !important;"></td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 160px;padding-right: 0px !important;">IMEI </th>
-                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
-                                    <td id="imeiModal" style="padding-left: 0px !important;"></td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 160px;padding-right: 0px !important;">PRICE </th>
-                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
-                                    <td id="priceModal" style="padding-left: 0px !important;"></td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 160px;padding-right: 0px !important;">DELIVERY TIME </th>
-                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
-                                    <td id="deliveryModal" style="padding-left: 0px !important;"></td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 160px;padding-right: 0px !important;">STATUS </th>
-                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
-                                    <td id="statusModal" style="padding-left: 0px !important;"></td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 160px;padding-right: 0px !important;">CODE </th>
-                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
-                                    <td id="codeModal" style="padding-left: 0px !important;"></td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 160px;padding-right: 0px !important;">COMMENTS </th>
-                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
-                                    <td id="commentsModal" style="padding-left: 0px !important;"></td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 160px;padding-right: 0px !important;">NOTE </th>
-                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
-                                    <td id="noteModal" style="padding-left: 0px !important;"></td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 160px;padding-right: 0px !important;">CREATED AT </th>
-                                    <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
-                                    <td id="createdAtModal" style="padding-left: 0px !important;"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <tbody class="table-border-bottom-0">
+                                    <tr>
+                                        <th style="width: 160px;padding-right: 0px !important;">SERVICE </th>
+                                        <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                        <td id="titleModal" style="padding-left: 0px !important;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 160px;padding-right: 0px !important;">IMEI </th>
+                                        <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                        <td id="imeiModal" style="padding-left: 0px !important;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 160px;padding-right: 0px !important;">PRICE </th>
+                                        <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                        <td id="priceModal" style="padding-left: 0px !important;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 160px;padding-right: 0px !important;">DELIVERY TIME </th>
+                                        <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                        <td id="deliveryModal" style="padding-left: 0px !important;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 160px;padding-right: 0px !important;">STATUS </th>
+                                        <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                        <td id="statusModal" style="padding-left: 0px !important;"></td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th style="width: 160px;padding-right: 0px !important;">CODE </th>
+                                        <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                        <td id="codeModal" style="padding-left: 0px !important;"></td>
+                                    </tr> -->
+                                    <tr>
+                                        <th style="width: 160px;padding-right: 0px !important;">REPLY </th>
+                                        <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                        <td id="commentsModal" style="padding-left: 0px !important;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 160px;padding-right: 0px !important;">NOTE </th>
+                                        <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                        <td id="noteModal" style="padding-left: 0px !important;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 160px;padding-right: 0px !important;">CREATED AT </th>
+                                        <td class="text-center" style="width: 0px;padding-left: 0px !important;">:</td>
+                                        <td id="createdAtModal" style="padding-left: 0px !important;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -150,7 +178,7 @@ $(document).ready(function() {
             { data: "imei" },
             // { data: "description" },
             // { data: "price" },
-            // { data: "service" },
+            { data: "service" },
             // { data: "code" },
             { data: "status" },
             // { data: "created_at" },

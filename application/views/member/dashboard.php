@@ -1,5 +1,24 @@
 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-2">
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 me-3">
+        <div class="card card-stats card-round">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-icon">
+                        <div class="icon-big text-center icon-info bubble-shadow-small">
+                            <i class="fas fa-money-check-alt"></i>
+                        </div>
+                    </div>
+                    <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                            <p class="card-category">Balance</p>
+                            <h4 class="card-title"><?= number_format($credit, 2) ?></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 me-3">
         <div class="card card-stats card-round">
             <div class="card-body">
                 <div class="row align-items-center">
@@ -10,8 +29,27 @@
                     </div>
                     <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
-                            <p class="card-category">Balance</p>
-                            <h4 class="card-title"><?= number_format($credit, 2) ?></h4>
+                            <p class="card-category">Total Credit</p>
+                            <h4 class="card-title"><?= number_format($total_credit, 2) ?></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 me-3">
+        <div class="card card-stats card-round">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-icon">
+                        <div class="icon-big text-center icon-warning bubble-shadow-small">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                    <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                            <p class="card-category">Total Order</p>
+                            <h4 class="card-title"><?= $total_order ?></h4>
                         </div>
                     </div>
                 </div>
@@ -64,15 +102,14 @@
             <div class="card-header" style="height: 62px">
                 <div class="profile-picture">
                     <div class="avatar avatar-xl">
-                        <img src="<?= base_url() ?>assets/img/profile/profile.jpg" alt="..."
-                            class="avatar-img rounded-circle" />
+                        <img src="<?= base_url() ?>assets/img/profile/profile.jpg" alt="..." class="avatar-img rounded-circle" />
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <div class="user-profile text-center">
                     <div class="name">
-                        <?= $this->session->userdata('MemberFirstName') . " " . $this->session->userdata("MemberLastName");?>
+                        <?= $this->session->userdata('MemberFirstName') . " " . $this->session->userdata("MemberLastName"); ?>
                     </div>
                     <div class="job"><?php echo $this->session->userdata("MemberEmail"); ?></div>
                     <div class="desc">I knew that you would do this!</div>
@@ -101,8 +138,8 @@
 </div>
 
 <script>
-var appraovedPercentage = <?= $appraovedPercentage ?>;
-var rejectPercentage = <?= $rejectPercentage ?>;
-var pendingPercentage = <?= $pendingPercentage ?>;
-var base_url = "<?= base_url() ?>";
+    var appraovedPercentage = <?= $appraovedPercentage ?>;
+    var rejectPercentage = <?= $rejectPercentage ?>;
+    var pendingPercentage = <?= $pendingPercentage ?>;
+    var base_url = "<?= base_url() ?>";
 </script>

@@ -106,13 +106,13 @@
                                 <p>Server Order History</p>
                             </a>
                         </li>
-                        <li
+                        <!-- <li
                             <?= $this->uri->uri_string(2)=='member/dashboard/credits'?'class="nav-item active"':'class="nav-item"'; ?>>
                             <a href="<?= site_url() ?>member/dashboard/credits">
                                 <i class="fas fa-credit-card"></i>
                                 <p>Credits</p>
                             </a>
-                        </li>
+                        </li> -->
                         <li
                             <?= $this->uri->uri_string(2)=='member/imeirequest/listservices' || $this->uri->uri_string(2)=='member/serverrequest/listservices'?'class="nav-item active submenu"':'class="nav-item submenu"'; ?>>
                             <a data-bs-toggle="collapse" href="#base" <?= $this->uri->uri_string(2)=='member/imeirequest/listservices' || $this->uri->uri_string(2)=='member/serverrequest/listservices'?'aria-expanded="true"':'aria-expanded="false" class="collapsed"'; ?>>
@@ -257,7 +257,7 @@
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item"
                                                 href="<?= site_url('member/dashboard/profile') ?>">My Profile</a>
-                                            <a class="dropdown-item" href="#">My Balance</a>
+                                            <a class="dropdown-item" href="<?= site_url('member/dashboard/credits') ?>">Payment History</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="<?= site_url('logout') ?>">Logout</a>
                                         </li>

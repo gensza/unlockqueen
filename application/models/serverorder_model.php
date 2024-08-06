@@ -117,6 +117,18 @@ class serverorder_model extends CI_Model
 		return $this->odatatables->generate();
 	}	
 	
+	public function get_server_data_new($id, $start, $length, $cari_data)
+	{
+		if(!empty($cari_data)){
+			$sql = "SELECT $this->tbl_name.ID, $this->tbl_services.Title, $this->tbl_name.Code, $this->tbl_name.Email, $this->tbl_name.Notes, $this->tbl_name.Status, $this->tbl_name.CreatedDateTime FROM $this->tbl_name INNER JOIN $this->tbl_services ON $this->tbl_name.ServerServiceID = $this->tbl_services.ID WHERE $this->tbl_name.MemberID = 1 AND ( $this->tbl_services.Title LIKE '%".$cari_data."%' OR $this->tbl_name.Code LIKE '%".$cari_data."%' OR $this->tbl_name.Email LIKE '%".$cari_data."%' OR $this->tbl_name.Notes LIKE '%".$cari_data."%' OR $this->tbl_name.Status LIKE '%".$cari_data."%' ) ORDER BY $this->tbl_name.ID DESC LIMIT $start, $length";
+		}else{
+			$sql = "SELECT $this->tbl_name.ID, $this->tbl_services.Title, $this->tbl_name.Code, $this->tbl_name.Email, $this->tbl_name.Notes, $this->tbl_name.Status, $this->tbl_name.CreatedDateTime FROM $this->tbl_name INNER JOIN $this->tbl_services ON $this->tbl_name.ServerServiceID = $this->tbl_services.ID WHERE $this->tbl_name.MemberID = 1 AND ( $this->tbl_services.Title LIKE '%%' OR $this->tbl_name.Code LIKE '%%' OR $this->tbl_name.Email LIKE '%%' OR $this->tbl_name.Notes LIKE '%%' OR $this->tbl_name.Status LIKE '%%' ) ORDER BY $this->tbl_name.ID DESC LIMIT $start, $length";
+		}
+
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}	
+
 	public function get_file_data_select($id, $status)
 	{
 		$this->load->library('odatatables');

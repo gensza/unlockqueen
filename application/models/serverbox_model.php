@@ -64,6 +64,27 @@ class serverbox_model extends CI_Model
         }
         return $data;
     }
+
+    public function service_with_boxes_new($cari_data = NULL) 
+	{
+        $data = array();
+        $query = $this->db->get($this->tbl_name);
+        foreach ($query->result_array() as $box) 
+        {
+            $box_id = $box['ID'];
+            $data[$box_id]['Title'] = $box['Title'];
+        }
+
+        $this->db->like('Title', $cari_data);
+		$this->db->where('Status', 'Enabled');
+		$query = $this->db->get($this->tbl_services);
+        foreach ($query->result_array() as $service) 
+        {
+            $box_id = $service['ServerBoxID'];
+            $data[$box_id]['services'][] = $service;
+        }
+        return $data;
+    }
     
 	function get_datatable($access)
 	{

@@ -21,7 +21,7 @@ class checkout extends FSD_Controller
 			$this->form_validation->set_rules('Credit', 'Credit', 'required|numeric|greater_than[4.99]');
 			if($this->form_validation->run() === FALSE)
 			{
-				$this->session->set_flashdata("fail", validation_errors());
+				$this->session->set_flashdata("message", '<div class="alert alert-danger alert-dismissible fade show" role="alert" role="danger"> '.validation_errors().'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 				redirect('member/dashboard/addfund');
 			}
 			else
@@ -61,7 +61,7 @@ class checkout extends FSD_Controller
 				$response = $this->merchant->purchase($params);
 				if( is_object($response) && $response->status() == 'failed')
 				{
-					$this->session->set_flashdata("fail", $this->lang->line('error_unable_process_payment'));
+					$this->session->set_flashdata("message", '<div class="alert alert-danger alert-dismissible fade show" role="alert" role="danger"> '.$this->lang->line('error_unable_process_payment').'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 					redirect('member/dashboard/addfund');	
 				}
 			}

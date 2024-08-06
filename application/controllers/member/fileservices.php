@@ -22,6 +22,14 @@ class fileservices extends FSD_Controller
 		$data['services'] = $this->fileservices_model->get_all();
 		$memberid = $this->session->userdata('MemberID');
 		$data['credit'] = $this->credit_model->get_credit($memberid);
+
+        $settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
+
 		$this->load->view('mastertemplate', $data);
 	}
 	
@@ -32,6 +40,14 @@ class fileservices extends FSD_Controller
 		$data['template'] = "member/fileservices/fileservices";
 		$data['services'] = $this->fileservices_model->get_all();
 		$data['credit'] = $this->credit_model->get_credit($id);
+
+        $settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
+
 		$this->load->view('mastertemplate', $data);
 	}
 
@@ -42,6 +58,14 @@ class fileservices extends FSD_Controller
 		$data['Title'] = "File Service History";
 		$data['template'] = "member/fileservices/history";
 		$data['credit'] = $this->credit_model->get_credit($id);
+
+        $settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
+        
 		$this->load->view('mastertemplate', $data);
 	}
 	

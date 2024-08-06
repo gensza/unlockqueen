@@ -25,9 +25,112 @@ class serverrequest extends FSD_Controller
 		$data['credit'] = $this->credit_model->get_credit($id);
 		$data['serverorders'] = $this->serverbox_model->service_with_boxes();
 		$data['template'] = "member/serverservice/request";
+
+		$settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
+
+		$data['content'] = "member/serverservice/request";
+		$data['content_js'] = "server_service/serverService.js";
+
 		$this->load->view('mastertemplate', $data);
 	}
+
+	public function listservices()
+	{
+		$data = array();
+		$id = $this->session->userdata('MemberID');
+		$data['Title'] = "Server Request List";
+		$data['template'] = "member/serverservice/requestlist";
+
+		$data['content'] = "member/serverservice/requestlist";
+		$data['content_js'] = "server_service/serverServiceList.js";
+
+		$settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
+
+		$this->load->view('mastertemplate', $data);
+	}
+	
+	public function history()
+	{
+		$data = array();
+		$data['Title'] = "Server Request";
+		$data['template'] = "member/serverservice/request";
+
+		$data['content'] = "member/serverservice/requesthistory";
+		$data['content_js'] = "server_service/serverService.js";
+
+		$settings = $this->setting_model->get_all();
+		foreach ($settings as $s)
+			$data['notif'][$s['Key']] = $s['Value'];
+
+		foreach ($settings as $s)
+			$data['notif_updated'][$s['Key']] = $s['UpdatedDateTime'];
 		
+		$this->load->view('mastertemplate', $data);
+	}
+
+	public function listservicesdata()
+	{
+
+		$start      =  $_REQUEST['start'];
+        $length     = $_REQUEST['length'];
+        $cari_data  = $_REQUEST['search']['value'];
+
+		$datas = $this->serverbox_model->service_with_boxes_new($cari_data);
+
+        $total = 9999999;
+        $array_data = array();
+        $no = $start + 1;
+
+		$flattenedData = [];
+		foreach ($datas as $network) {
+			if (!empty($network['services'])) {
+
+				$flattenedData[] = [
+					'title' => '<p style="padding:10px;margin:0px;background-color:lightgrey"><b>'.$network['Title'].'</b></p>',
+				];
+
+				foreach ($network['services'] as $method) {
+					$flattenedData[] = [
+						'title' => '<p style="padding:10px;margin:0px">'.$method['Title'].'</p>',
+						'DeliveryTime' => '<p style="padding:10px;margin:0px">'.$method['DeliveryTime'].'</p>',
+						'methodPrice' => '<p style="padding:10px;margin:0px">'.$method['Price'].'</p>'
+					];
+				}
+			}
+		}
+
+		foreach ($flattenedData as $method) {
+
+			$data['title'] = $method['title'];
+			$data['delivery_time'] = $method['DeliveryTime'];
+			$data['price'] = $method['methodPrice'];
+
+			array_push($array_data, $data);
+		}
+
+		$no++;
+
+        $output = array(
+
+            "draw" => intval($_REQUEST['draw']),
+            "recordsTotal" => intval($total),
+            "recordsFiltered" => intval($total),
+            "data" => $array_data
+        );
+
+
+        echo json_encode($output);
+	}
 	
 	###### Place IMER Request Order and deduct charges ################################
 	
@@ -81,11 +184,11 @@ class serverrequest extends FSD_Controller
 					'Amount' => -1 * abs($price),
 					'CreatedDateTime' => date("Y-m-d H:i:s")
 				);
-				$this->credit_model->insert($credit_data);						
-				$this->session->set_flashdata('success', $this->lang->line('error_record_addes_successfully'));
+				$this->credit_model->insert($credit_data);	
+				$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert" role="danger"> '.$this->lang->line('error_record_addes_successfully').'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 				redirect("member/serverrequest/");
 			}
-			$this->session->set_flashdata('fail', 'Service not available.');
+			$this->session->set_flashdata('message', 'Service not available.');
 			redirect("member/serverrequest/");
 		}
 	}
@@ -125,6 +228,42 @@ class serverrequest extends FSD_Controller
 				}
 			}
 			$this->load->view("member/serverservice/loadrequiredfield", $data);
+		}
+	}
+
+	public function formfieldstext()
+	{
+		if($this->input->is_ajax_request() === TRUE && $this->input->post('service_id') !== FALSE)
+		{
+			$id = $this->input->post('service_id');	
+			$service = $this->serverservice_model->get_where(array('ID' => $id));
+			if( !empty($service) )
+			{
+				$data = $service[0];
+				$data['services'] = [];
+				$api_id = $data['ApiID'];
+				$tool_id = $data['ToolID'];
+				$apis = $this->apimanager_model->get_where(['ID' => $api_id]);
+				if( !empty($apis) )
+				{
+					$api = $apis[0];
+					$api = new DhruFusion($api['Host'], $api['Username'], $api['ApiKey']);
+					$api->debug = FALSE; // Debug on
+					$request = $api->action('serverservicetypelist');
+					if( !isset($request['ERROR']) )
+					{
+						$services = $request['SUCCESS'][0]['LIST'];
+						foreach ($services as $v) 
+						{
+							if( $v['tool_id'] == $tool_id)
+							{
+								$data['services'][] = $v;
+							}
+						}
+					}
+				}
+			}
+			echo json_encode($data);
 		}
 	}
 }
